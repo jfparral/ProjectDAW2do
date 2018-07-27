@@ -1,0 +1,152 @@
+
+.fondoPrincipal{
+	height: 30em;
+	width: 100%;
+}
+
+.bookcase{
+	width: 48%;
+	height: 28%;
+}
+
+#btnSaber{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border: none;
+	padding: 5px;
+	margin-top: 25px;
+}
+
+.readers{
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	width: 35em;
+	height: 20em;
+}
+
+
+
+.libro{
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+	height: 15em;
+	width: 10em;
+	margin: 1.2em 1.2em 0.8em 1.2em;
+	padding: 5px;
+	border-bottom: 2px solid white;
+	margin-left: auto;
+    margin-right: auto;
+
+}
+
+.enlaces{
+	background-color: #333;
+	font-weight: bolder;
+	padding: 0.1em 0.3em;
+	color: white;
+	font-size: 0.8em;
+
+}
+
+
+a:hover, .caja img:hover{
+	transform: scale(1.1);
+	color: white;
+}
+
+.caja{
+	margin-right: auto;
+	margin-left: auto;
+}
+
+
+
+.verMas{
+	display: none;
+}
+
+.redes:hover{
+	border: 2px solid white;
+	transform: scale(1.2);
+	border-radius: 50%;
+}
+
+hr{
+	background-color: white;
+}
+
+.imn{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.mapa{
+	width: 80%;
+	height: 20em;
+}
+
+.frase{
+	font-family: 'Playball', cursive;
+	font-size: 1.5em;
+}
+
+.imgBlog{
+	width: 60%;
+	height: 20%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 2em;
+}
+
+@media screen and (max-width: 600px) {
+
+	.caja{		
+		width: 25em;
+	}
+
+	.par2, .par3{
+  		display:none;
+  	}
+
+	.verMas{
+	  	display: block;
+	  	margin-left: auto;
+	  	margin-right: auto;
+  	}
+
+  	.fondoPrincipal{
+  		height: 15em;
+  	}
+
+
+
+	/*
+
+  	.libro {
+    width: 10em;
+    height: 12em;
+	}
+
+
+
+
+
+  	.mensajeInicial{
+  		font-size: 3.5em;
+  	}
+
+
+
+  	*/
+
+}
+
+
+
+
+
