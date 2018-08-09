@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'LeoBook.apps.LeobookConfig',
-    'Registro.apps.RegistroConfig',
+    'Registro',
+    'Venta'
 ]
 
 MIDDLEWARE = [

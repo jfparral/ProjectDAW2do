@@ -1,0 +1,50 @@
+{% extends 'LeoBook/base.html' %} {% load staticfiles %}
+
+{%block content%}
+
+<div class="container">
+      
+    <h1 class="display-5 text-center my-4">Libros destacados</h1>
+    <h4 class="display-6 text-center"><strong>A lo largo de la historia</strong></h4>
+    
+
+  </div>
+
+    <!-- Libros destacados -->
+  <div class="container mt-5">
+    
+
+        <div class="row py-1 text-center">
+         
+          <div class="col-6 col-sm-6 col-md-4 col-lg-3 caja par3">
+            <img src="{% static 'img/divinacomedia.jpg' %}" class="img-fluid libro">
+            
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 col-lg-3 caja par3">
+            <img src="{% static 'img/donquijote.jpg' %}" class="img-fluid libro">
+            
+          </div>
+          <div class="col-6 col-sm-6 col-md-6 col-lg-3 caja par4">
+            <img src="{% static 'img/cienaños.jpg' %}" class="img-fluid libro">
+            
+          </div>
+          <div class="col-6 col-sm-6 col-md-6 col-lg-3 caja par4">
+            <img src="{% static 'img/1984.jpg' %}" class="img-fluid libro">
+            
+          </div>
+
+         
+        </div>
+
+      
+        
+  </div>
+  <!-- /Libros destacados -->
+
+  <div class="container">
+    
+    <div id="book-info"></div>
+    <button id="btnSaber" class="bg-primary text-white">Click para saber más</button>
+  </div>
+
+{% endblock %}

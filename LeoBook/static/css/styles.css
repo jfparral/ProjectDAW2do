@@ -124,7 +124,6 @@ hr{
   	}
 
 
-
 	/*
 
   	.libro {
@@ -144,6 +143,20 @@ hr{
 
   	*/
 
+}
+
+.sombra{
+	background: transparent;
+	color: white;
+	border-color: white;
+	border: solid 1px;
+}
+
+.sombra:hover{
+	color: blue;
+	background:white;
+	border-color: blue;
+	border: solid 1px;
 }
 
 
