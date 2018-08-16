@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+SETTINGS_PATH = os.path.normpath(os.path.dirname(__file__))
 # Application definition
 
 INSTALLED_APPS = [
@@ -61,6 +61,9 @@ WEBPACK_LOADER = {
 
 ROOT_URLCONF = 'ProjectDAW2do.urls'
 
+TEMPLATE_DIRS = (
+    os.path.join(SETTINGS_PATH, 'templates'),
+)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

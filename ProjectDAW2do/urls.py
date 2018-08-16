@@ -17,10 +17,11 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
+from ProjectDAW2do import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     path('', include('LeoBook.urls')),
-    url(r'^react/', TemplateView.as_view(template_name="index.html")),
-]
+    url(r'^react/', views.index,name='index'),
+
 ]
