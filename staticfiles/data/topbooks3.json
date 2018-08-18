@@ -1,0 +1,35 @@
+
+[
+  {
+    "name": "En busca del tiempo perdido",
+    "author" : "Marcel Proust",
+    "genre": "Ficcion, Filosofia"
+    
+    },
+  
+  {
+    "name": "Hamlet",
+    "author" : "William Shakespare",
+    "genre": "Tragedia, Drama"
+  },
+  
+  {
+    "name": "Las Aventuras de Huckleberry Finn",
+    "author" : "Mark Twain",
+    "genre": "Novela, Satira, Humor"
+  },
+  
+  {
+    "name": "La Guerra y la paz",
+    "author" : "Leon Tolstoi",
+    "genre": "Ficcion historica"
+  },
+  
+  {
+    "name": "Anna Karenina",
+    "author" : "Leon Tolstoi",
+    "genre": "Novela"
+  }
+  
+  
+]

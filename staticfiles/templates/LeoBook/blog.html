@@ -1,0 +1,70 @@
+{% extends 'LeoBook/base.html' %} {% load staticfiles %}
+
+{%block content%}
+<div class="container">
+    
+    <div>
+      <h2 class="display-3 text-center text-white my-4 p-3 bg-primary mensajeInicial">Blog</h2>
+    </div>  
+
+    <div class="row">
+      <div class="leftcolumn text-justify">
+        <div class="card bg-primary text-white">
+          <h2 class="text-center">Los libros electrónicos toman fuerza</h2>
+          <h5 class="text-center">9 de abril del 2017</h5>
+
+          <img src="{% static 'img/kindle.jpg' %}" class="img-fluid imgBlog">
+          <p>En la actualidad, el libro sigue siendo uno de los elementos protagónicos en la adquisición de conocimiento, entretenimiento y consulta. El acceso y la difusión de la lectura avanza a pasos agigantados en algunos países de América latina, mientras que en otros no tanto.</p>
+
+          <p>Aunque la mayoría de las personas disfrutan de un libro impreso, su adquisición no siempre es la opción más económica. Por lo tanto, el libro digital es una herramienta que toma cada vez más valor en esta era de la información.</p>
+
+          <p>Además de ser una opción más asequible económicamente hablando; los libros electrónicos son más portables, no ocupan espacio físico, no se deterioran ni se pierden.</p>
+
+          <p>De la experiencia que tengo comprando libros electrónicos en algunas plataformas, puedo destacar los libros en formato Kindle. Los libros en este formato tienen la variedad más grande del mundo (Negocios, Entretenimiento, Historia, Ficción, etc.) aparte de gozar con un excelente precio.</p>
+
+          <p>Concluyendo el tema, personalmente pienso que una de las ventajas más interesantes de los libros electrónicos es la facilidad con la que puedes personalizar la letra y el tamaño del texto, realizar marcados o apuntes y sobre todo, la opción de visualizar contenido en condiciones de poca luz u oscuridad total.</p>
+
+          <p><strong>Kevin Urgilés</strong></p>
+        </div>
+        <div class="card bg-primary text-white text-justify">
+          <h2 class="text-center">El internet del dinero</h2>
+          <h5 class="text-center">17 de abril del 2017</h5>
+          <img src="{% static 'img/bitcoin.jpg' %}" class="img-fluid imgBlog">
+
+          <p>¿Por qué el Bitcoin es un tema tan curioso y relevante en la actualidad?. Quiero comenzar este post citando textualmente un extracto del libro 𝗘𝗹 𝗶𝗻𝘁𝗲𝗿𝗻𝗲𝘁 𝗱𝗲𝗹 𝗱𝗶𝗻𝗲𝗿𝗼 de Andreas M. Antonopoulos.</p>
+
+          <p>“En la historia de la humanidad jamás habíamos construido nada parecido. Esta invención es verdaderamente revolucionaria. Cuando algún día miremos hacia atrás, veremos que éste es un momento histórico en la evolución de las ciencias de la computación, que representa ante todo una revolución social y política actualmente en marcha."</p>
+
+          <p>"El bitcoin y las criptomonedas en general muestran un avance gigantesco en la era de la información. Las criptomonedas representan dinero al igual que el dólar, el euro o la libra esterlina. Sin embargo, estas monedas digitales no pertenecen a ningún gobierno ni necesitan el soporte de una entidad financiera. Es decir, puedes enviar grandes cantidades de dinero de forma segura por una mínima comisión o inclusive en ocasiones, gratis."</p>
+
+          <p>"Básicamente, la importancia de las criptomonedas radica en la tecnología que las respalda. Esta tecnología se llama 𝗕𝗹𝗼𝗰𝗸𝗰𝗵𝗮𝗶𝗻 y es en lo que me enfocaré en el siguiente post."</p>
+
+          <p><strong>Kevin Urgilés</strong></p>
+
+
+        </div>
+      </div>
+      <div class="rightcolumn">
+        <div class="card bg-primary text-white text-justify">
+          <h2 class="text-center">Los autores</h2>
+          <img src="{% static 'img/students.jpg' %}" class="img-fluid imgBlog">
+          <p>Somos dos estudiantes politécnicos de la carrera de Ingeniería en Computación.</p>
+          
+        </div>
+        <div class="card bg-primary text-white">
+          <h3>Publicaciones más destacadas</h3>
+
+          <p><strong>* Los libros electrónicos están ganando fuerza</strong></p>
+          <p><strong>* Principios básicos del bitcoin</strong></p>
+          <p><strong>* Revolución del BlockChain</strong></p>
+
+        </div>
+        <div class="card bg-primary text-white text-justify">
+          <h3 class="text-center">Acerca de este blog</h3>
+          <p>Este espacio está construido únicamente con el propósito de brindar información de resúmenes, lecciones y datos importantes de los libros que ofrece esta página.</p>
+          <p>Esta página es el resultado de la afición por la lectura de Kevin Urgilés y Leonardo Castro</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

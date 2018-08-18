@@ -1,0 +1,35 @@
+
+[
+  {
+    "name": "1984",
+    "author" : "George Orwell",
+    "genre": "Ficcion distopica"
+    
+    },
+  
+  {
+    "name": "El principito",
+    "author" : "Antoine de Saint Exupery",
+    "genre": "Novela, Fabula"
+  },
+  
+  {
+    "name": "El senor de los anillos",
+    "author" : "J.R.R Tolkien",
+    "genre": "Ficcion"
+  },
+  
+  {
+    "name": "Don Quijote de la Mancha",
+    "author" : "Miguel de Cervantes",
+    "genre": "Novela, Satira"
+  },
+  
+  {
+    "name": "La biblia",
+    "author" : "Varios",
+    "genre": "Sin clasificacion"
+  }
+  
+  
+]

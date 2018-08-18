@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load render_bundle from webpack_loader %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,10 +20,12 @@
 </head>
 
 <body>
-    {% block barranavegacion %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<div id="root">
+    </div>
+      {% render_bundle 'main' %}
+	  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-
+			
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -54,16 +57,14 @@
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Nombre del libro" aria-label="Search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Nombre del libro" aria-label="Search"/>
                     <button class="btn sombra" type="submit">Buscar</button>
                 </form>
             </div>
         </div>
     </nav>
-    {% endblock barranavegacion %} 
-    
-    
-    {% block content %}
+
+	{% block content %}
     {% endblock %}
     
     
@@ -132,5 +133,4 @@
     </div>
     {% endblock footer %}
 </body>
-
 </html>

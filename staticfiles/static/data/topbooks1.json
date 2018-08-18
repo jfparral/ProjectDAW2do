@@ -1,0 +1,36 @@
+[
+  {
+    "name": "La ilíada Homero",
+    "author" : "Homero",
+    "genre": "Epopeya, Poesía"
+    
+    },
+  
+  {
+    "name": "Cien años de soledad",
+    "author" : "Gabriel García Márquez",
+    "genre": "Novela Ficción"
+  },
+  
+  {
+    "name": "Fausto",
+    "author" : "Johann Wolfgang Von Goethe",
+    "genre": "Novela Tragedia"
+  },
+  
+  {
+    "name": "La divina Comedia",
+    "author" : "Dante Alighieri",
+    "genre": "Narrativa poética"
+  },
+  
+  {
+    "name": "Crimen y Castigo",
+    "author" : "Fiodor Dostoievski",
+    "genre": "Novela psicológica"
+  }
+  
+  
+]
+
+
