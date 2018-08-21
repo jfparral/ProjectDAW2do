@@ -10,21 +10,21 @@ class Categoria(models.Model):
 class Autor(models.Model):
     nombre = models.CharField(max_length = 50)
     fecha_nacimiento=models.DateField()
-        def __str__(self):
+    def __str__(self):
         return self.nombre
 
 class Reserva(models.Model):
     cantidad=models.IntegerField(max_length=250)
     estado=models.BooleanField(default=False)
-        def __str__(self):
+    def __str__(self):
         return self.estado
 
 class Libro(models.Model):
     nombre = models.CharField(max_length = 50)
     precio = models.IntegerField()
-    id_categoria=models.ForeignKey(Categoria,blank=True, null=True)
-    id_autor=models.ForeignKey(Autor,blank=True, null=True)
-    id_reserva=models.ForeignKey(Reserva,blank=True, null=True)
+    id_categoria=models.ForeignKey(Categoria,models.SET_NULL,blank=True, null=True)
+    id_autor=models.ForeignKey(Autor,models.SET_NULL,blank=True, null=True)
+    id_reserva=models.ForeignKey(Reserva,models.SET_NULL,blank=True, null=True)
     def __str__(self):
         return self.nombre
 
@@ -58,15 +58,15 @@ class Administrador(models.Model):
         return self.usuario
 
 class Contenido_Blog(models.Model):
-    titulo = models.CharField(max_length=length, blank=True, null=True)
-    contenido = models.CharField(max_length=length, blank=True, null=True)
+    titulo = models.CharField(max_length=250, blank=True, null=True)
+    contenido = models.CharField(max_length=250, blank=True, null=True)
     id_admin = models.ForeignKey(Administrador, on_delete=models.CASCADE)
     def __str__(self):
-        return self.usuario
+        return self.titulo
 
 class Contenido_Evento(models.Model):
-    titulo = models.CharField(max_length=length, blank=True, null=True)
-    contenido = models.CharField(max_length=length, blank=True, null=True)
+    titulo = models.CharField(max_length=250, blank=True, null=True)
+    contenido = models.CharField(max_length=250, blank=True, null=True)
     fecha=models.DateField()
     id_admin = models.ForeignKey(Administrador, on_delete=models.CASCADE)
     def __str__(self):
