@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'LeoBook.apps.LeobookConfig',
     'Registro',
     'Venta'
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
