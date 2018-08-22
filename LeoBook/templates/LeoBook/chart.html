@@ -1,168 +1,108 @@
 {% extends 'LeoBook/base.html' %} {% load staticfiles %}
 
 {%block content%}
-<canvas class="my-4" id="myChart" width="900" height="380"></canvas>
-	
-	<h2>Section title</h2>
-          <div class="table-responsive">
-            <table class="table table-striped table-sm">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
-                </tr>
-                <tr>
-                  <td>1,004</td>
-                  <td>dapibus</td>
-                  <td>diam</td>
-                  <td>Sed</td>
-                  <td>nisi</td>
-                </tr>
-                <tr>
-                  <td>1,005</td>
-                  <td>Nulla</td>
-                  <td>quis</td>
-                  <td>sem</td>
-                  <td>at</td>
-                </tr>
-                <tr>
-                  <td>1,006</td>
-                  <td>nibh</td>
-                  <td>elementum</td>
-                  <td>imperdiet</td>
-                  <td>Duis</td>
-                </tr>
-                <tr>
-                  <td>1,007</td>
-                  <td>sagittis</td>
-                  <td>ipsum</td>
-                  <td>Praesent</td>
-                  <td>mauris</td>
-                </tr>
-                <tr>
-                  <td>1,008</td>
-                  <td>Fusce</td>
-                  <td>nec</td>
-                  <td>tellus</td>
-                  <td>sed</td>
-                </tr>
-                <tr>
-                  <td>1,009</td>
-                  <td>augue</td>
-                  <td>semper</td>
-                  <td>porta</td>
-                  <td>Mauris</td>
-                </tr>
-                <tr>
-                  <td>1,010</td>
-                  <td>massa</td>
-                  <td>Vestibulum</td>
-                  <td>lacinia</td>
-                  <td>arcu</td>
-                </tr>
-                <tr>
-                  <td>1,011</td>
-                  <td>eget</td>
-                  <td>nulla</td>
-                  <td>Class</td>
-                  <td>aptent</td>
-                </tr>
-                <tr>
-                  <td>1,012</td>
-                  <td>taciti</td>
-                  <td>sociosqu</td>
-                  <td>ad</td>
-                  <td>litora</td>
-                </tr>
-                <tr>
-                  <td>1,013</td>
-                  <td>torquent</td>
-                  <td>per</td>
-                  <td>conubia</td>
-                  <td>nostra</td>
-                </tr>
-                <tr>
-                  <td>1,014</td>
-                  <td>per</td>
-                  <td>inceptos</td>
-                  <td>himenaeos</td>
-                  <td>Curabitur</td>
-                </tr>
-                <tr>
-                  <td>1,015</td>
-                  <td>sodales</td>
-                  <td>ligula</td>
-                  <td>in</td>
-                  <td>libero</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
-    
+	<h2>Usuarios</h2>
+          <table class="table_id" class="display">
+    <thead>
+        <tr>
+			<th>Código</th>
+            <th>Nombres</th>
+            <th>Correo</th>
+			<th>Contraseña</th>
+            <th>Libro Favorito</th>
+			<th>Autor Favorito</th>
+        </tr>
+    </thead>
+    <tbody>
+		{% for u in Usuario %}
+        <tr>
+			<td>{{u.id}}</td>
+            <td>{{u.nombres}}</td>
+            <td>{{u.correo}}</td>
+			<td>{{u.password}}</td>
+            <td>{{u.id_libro_fav}}</td>
+			<td>{{u.id_autor_fav}}</td>
+        </tr>
+		{% endfor %}
+    </tbody>
+	</table>
+	<h2>Libros</h2>
+          <table class="table_id" class="display">
+    <thead>
+        <tr>
+			<th>Código</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+			<th>Categoría</th>
+            <th>Autor</th>
+			<th>Reserva</th>
+        </tr>
+    </thead>
+    <tbody>
+		{% for book in Libros %}
+        <tr>
+			<td>{{book.id}}</td>
+            <td>{{book.nombre}}</td>
+            <td>{{book.precio}}</td>
+			<td>{{book.id_categoria}}</td>
+            <td>{{book.id_autor}}</td>
+			<td>{{book.id_reserva}}</td>
+        </tr>
+		{% endfor %}
+    </tbody>
+	</table>
+	<h2>Descripcion De Ventas</h2>
+          <table class="table_id" class="display">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Cantidad</th>
+			<th>Libro</th>
+        </tr>
+    </thead>
+    <tbody>
+		{% for d in Descripcion %}
+        <tr>
+            <td>{{d.id}}</td>
+            <td>{{d.cantidad}}</td>
+			<td>{{d.id_libro}}</td>
+        </tr>
+		{% endfor %}
+    </tbody>
+	</table>
+	<h2>Registro De Ventas</h2>
+          <table class="table_id" class="display">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Total</th>
+			<th>Usuario</th>
+            <th>Descripción Venta</th>
+        </tr>
+    </thead>
+    <tbody>
+		{% for re in Registro %}
+        <tr>
+            <td>{{re.id}}</td>
+            <td>{{re.total}}</td>
+			<td>{{re.id_usuario}}</td>
+            <td>{{re.id_descripcion_venta}}</td>
+        </tr>
+		{% endfor %}
+    </tbody>
+	</table>
+ 
     
     <!-- Optional JavaScript -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script>
-      var ctx = document.getElementById("myChart");
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          datasets: [{
-            data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-            lineTension: 0,
-            backgroundColor: 'transparent',
-            borderColor: '#007bff',
-            borderWidth: 4,
-            pointBackgroundColor: '#007bff'
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: false
-              }
-            }]
-          },
-          legend: {
-            display: false,
-          }
-        }
-      });
+		$(document).ready( function () {
+		$('.table_id').DataTable(
+		{select: true });
+		} );
     </script>
 {% endblock %}
