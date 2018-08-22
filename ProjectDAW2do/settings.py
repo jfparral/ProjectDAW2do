@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'webpack_loader',
     'LeoBook.apps.LeobookConfig',
     'Registro',
-    'Venta'
+    'Venta',
     'rest_framework',
 ]
 

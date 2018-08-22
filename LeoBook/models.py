@@ -14,7 +14,7 @@ class Autor(models.Model):
         return self.nombre
 
 class Reserva(models.Model):
-    cantidad=models.IntegerField(max_length=250)
+    cantidad=models.IntegerField()
     estado=models.BooleanField(default=False)
     def __str__(self):
         return self.estado
@@ -42,7 +42,7 @@ class Descripcion_Venta(models.Model):
     cantidad=models.IntegerField()
     id_libro=models.ForeignKey(Libro,models.SET_NULL,blank=True,null=True)
     def __str__(self):
-        return self.nombres
+        return self.cantidad
 
 class Registro_Ventas(models.Model):
     total=models.FloatField()
