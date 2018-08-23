@@ -17,7 +17,7 @@ class Reserva(models.Model):
     cantidad=models.IntegerField()
     estado=models.BooleanField(default=False)
     def __str__(self):
-        return self.estado
+        return str(self.estado)
 
 class Libro(models.Model):
     nombre = models.CharField(max_length = 50)
@@ -32,6 +32,7 @@ class Usuario(models.Model):
     nombres= models.CharField(max_length = 100)
     correo = models.EmailField()
     password = models.CharField(max_length = 250)
+    is_staff=models.BooleanField(default=True)
     id_libro_fav=models.ForeignKey(Libro,models.SET_NULL,blank=True,null=True)
     id_reserva=models.ForeignKey(Reserva,models.SET_NULL,blank=True,null=True)
     id_autor_fav=models.ForeignKey(Autor,models.SET_NULL,blank=True,null=True)
@@ -42,14 +43,14 @@ class Descripcion_Venta(models.Model):
     cantidad=models.IntegerField()
     id_libro=models.ForeignKey(Libro,models.SET_NULL,blank=True,null=True)
     def __str__(self):
-        return self.cantidad
+        return str(self.cantidad)
 
 class Registro_Ventas(models.Model):
     total=models.FloatField()
     id_usuario=models.ForeignKey(Usuario,models.SET_NULL,blank=True,null=True)
     id_descripcion_venta=models.ForeignKey(Descripcion_Venta,models.SET_NULL,blank=True,null=True)
     def __str__(self):
-        return self.total
+        return str(self.total)
 
 class Administrador(models.Model):
     usuario=models.CharField(max_length=50,unique=True)
