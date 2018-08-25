@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import *
 import random as rd
+from django.core.mail import send_mail
 # Create your views here.
 def index(request):
     lib=Libro.objects.all()
@@ -17,12 +18,13 @@ def index(request):
                 d[_aut][_cat].append(elem)
     f=open("mycsv.csv","w")
     f.write("id,value\n")
+    f.write("LeoBook,\n")
     for el in d:
-        f.write(el.nombre+",\n")
+        f.write("LeoBook."+el.nombre+",\n")
         for elemento in d[el]:
-            f.write(el.nombre+"."+elemento.nombre+",\n")
+            f.write("LeoBook."+el.nombre+"."+elemento.nombre+",\n")
             for nin in d[el][elemento]:
-                f.write(el.nombre + "." + elemento.nombre+"."+nin.nombre + "," + str(rd.randint(100, 3500)) + ",\n")
+                f.write("LeoBook."+el.nombre + "." + elemento.nombre+"."+nin.nombre + "," + str(rd.randint(100, 3500)) + ",\n")
     f.close()
 
     return render(request,'LeoBook/index.html')
