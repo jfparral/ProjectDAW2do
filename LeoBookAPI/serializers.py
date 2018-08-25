@@ -36,20 +36,15 @@ class RegistroVentasSerializer(serializers.ModelSerializer):
         model = Registro_Ventas
         fields=('id','total','id_usuario','id_descripcion')
 
-class AdministradorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Administrador
-        fields = ('id', 'usuario', 'password')
-
 class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contenido_Blog
-        fields = ('id', 'titulo', 'contenido', 'id_admin')
+        fields = ('id', 'titulo', 'contenido')
 
 class EventoSerializer(serializers.ModelSerializer):
     class Meta:
         model=Contenido_Evento
-        fields=('id','titulo', 'contenido','fecha', 'id_admin')
+        fields=('id','titulo', 'contenido','fecha')
 
 class SuscripcionSerializer(serializers.ModelSerializer):
     class Meta:
