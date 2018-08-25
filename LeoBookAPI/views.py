@@ -1,4 +1,3 @@
-
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -7,6 +6,18 @@ from rest_framework.parsers import JSONParser
 from .serializers import LibroSerializer
 from .models import *
 import random as rd
+#Mias
+from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404
+from rest_framework.renderers import TemplateHTMLRenderer
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status 
+from rest_framework.response import Response 
+from rest_framework.views import APIView 
+from django.http import Http404,JsonResponse,HttpResponse
+from appRest.forms import ServicioForm
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 def index(request):
     lib=Libro.objects.all()
@@ -33,6 +44,124 @@ def index(request):
     f.close()
 
     return JsonResponse(libros.data)
+
+class author_list(APIView):
+    @csrf_exempt
+    def get(self, request):
+        autores = Autor.objects.all()
+        serializer = AutorSerializer(autores,many=True)
+        return JsonResponse(serializer.data, safe = False)
+
+class category_list(APIView):
+    @csrf_exempt
+    def get(self, request):
+        categoria = Categoria.objects.all()
+        serializer = CategoriaSerializer(categoria,many=True)
+        return JsonResponse(serializer.data, safe = False)
+
+class book_list(APIView):
+    @csrf_exempt
+    def get(self, request):
+        libros = Libro.objects.all()
+        serializer = LibroSerializer(libros,many=True)
+        return JsonResponse(serializer.data, safe = False)
+
+class book_sell(APIView):
+    def post(self, request, user,book):
+        usuario=get_object_or_404(Usuario, id=user)
+        libro=get_object_or_404(Libro,id=book)
+        datos={'cantidad':request.POST['cantidad'],'id_libro':book}
+        serializer = DescripcionVentasSerializer(data=datos)
+        print(serializer)
+        print(serializer.is_valid())
+        if serializer.is_valid():
+            serializer.save()
+            venta=Descripcion_Venta.objects.all()
+            #Aqui puedde haber error con el len venta
+            datos2={'total':int(request.POST['cantidad'])*libro.precio,'id_usuario':usuario.id,'id_descripcion_venta':len(venta)}
+            serializer2=RegistroVentasSerializer(data=datos2)
+            if serializer2.is_valid():
+                serializer2.save()
+                return JsonResponse(serializer2.data, status=201)
+            else:
+                return JsonResponse(serializer.errors, status=400)
+        return JsonResponse(serializer.errors, status=400)
+
+class book_reserve(APIView):
+    @csrf_exempt
+    def post(self, request,user,book):
+        datos={'cantidad':request.POST['cantidad'],'estado':request.POST['estado'],'id_libro':book,'id_usuario':user}
+        serializer = ReservaSerializer(data=datos)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.data, safe = False)
+
+class user_detail_compras(APIView):
+    @csrf_exempt
+    def get(self, request,user):
+        compra=Registro_Ventas.objects.get(id_usuario=user)
+        serializer = RegistroVentasSerializer(compra,many=True)
+        return JsonResponse(serializer.data, safe = False)
+
+class crear(APIView):
+    def post(self, request):
+        datos={'nombres':request.POST['nombre'],'correo':request.POST['correo'],'password':request.POST['password']
+        ,'id_libro_fav':request.POST['id_libro_fav'],'id_autor_fav':request.POST['id_autor_fav']}
+        serializer = UsuarioSerializer(data=datos)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+
+class user_update(APIView):
+    def post(self, request, user):
+        usuario = get_object_or_404(Usuario, pk=user)
+        usuario.nombres=request.POST['nombres']
+        usuario.correo=request.POST['correo']
+        usuario.password=request.POST['password']
+        usuario.id_libro_fav=request.POST['id_libro_fav']
+        usuario.id_autor_fav=request.POST['id_autor_fav']
+        usuario.save()
+        serializer = UsuarioSerializer(usuario)
+        if not serializer.is_valid():
+            return HttpResponse(status=404)
+        serializer.save()
+        return JsonResponse(serializer.data)
+
+class user_delete(APIView):
+    def post(self, request, user):
+        usuario = get_object_or_404(Usuario, pk=user)
+        usuario.delete()
+        return HttpResponse(status=204)
+
+class blog_list(APIView):
+    @csrf_exempt
+    def get(self, request):
+        blogs = Contenido_Blog.objects.all()
+        serializer = BlogSerializer(blogs,many=True)
+        return JsonResponse(serializer.data, safe = False)
+
+class blog_id(APIView):
+    @csrf_exempt
+    def get(self, request,blog_id):
+        blogs = get_object_or_404(Contenido_Blog,pk=blog_id)
+        serializer = BlogSerializer(blogs)
+        return JsonResponse(serializer.data, safe = False)
+
+class event_list(APIView):
+    @csrf_exempt
+    def get(self, request):
+        evento = Contenido_Evento.objects.all()
+        serializer = EventoSerializer(evento,many=True)
+        return JsonResponse(serializer.data, safe = False)
+
+class event_id(APIView):
+    @csrf_exempt
+    def get(self, request,event_id):
+        evento = get_object_or_404(Contenido_Evento,pk=event_id)
+        serializer = EventoSerializer(evento)
+        return JsonResponse(serializer.data, safe = False)
 
 def inicio(request):
     return render(request,'LeoBook/inicio.html')
