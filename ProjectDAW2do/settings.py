@@ -88,11 +88,17 @@ WSGI_APPLICATION = 'ProjectDAW2do.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'djongo',
+        'NAME' : 'defaultLeoBook',
+        'HOST': 'localhost'
+    },
+    'LeoBookApi': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'DBLeoBookApi',
     }
 }
 
+DATABASE_ROUTERS = ['LeoBookAPI.routers.MiApp2Router',]
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
