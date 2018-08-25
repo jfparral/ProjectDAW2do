@@ -11,20 +11,21 @@ class AutorSerializer(serializers.ModelSerializer):
         model = Autor
         fields = ('id', 'nombre', 'fecha_nacimiento')
 
-class ReservaSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Reserva
-        fields = ('id', 'cantidad', 'estado')
 
 class LibroSerializer(serializers.ModelSerializer):
     class Meta:
         model = Libro
         fields = ('id', 'nombre', 'precio','id_categoria','id_autor','id_reserva')
 
+class ReservaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reserva
+        fields = ('id', 'cantidad', 'estado','id_libro','id_usuario')
+
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ('id', 'nombres', 'correo','password','id_libro_fav','id_reserva','id_autor_fav')
+        fields = ('id', 'nombres', 'correo','password','id_libro_fav','id_autor_fav')
 
 class DescripcionVentasSerializer(serializers.ModelSerializer):
     class Meta:
