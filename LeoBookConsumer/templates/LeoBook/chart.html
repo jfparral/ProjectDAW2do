@@ -1,0 +1,107 @@
+{% extends 'LeoBook/base.html' %} {% load staticfiles %}
+
+{%block content%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script type="text/css" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"></script>
+<script type="text/css" src="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"></script>
+	<h2>Usuarios</h2>
+          <table id="table_id" class="table table-hover" class="display" style="width:95%">
+    <thead>
+        <tr>
+			<th>Código</th>
+            <th>Nombres</th>
+            <th>Correo</th>
+			<th>Contraseña</th>
+            <th>Libro Favorito</th>
+			<th>Autor Favorito</th>
+        </tr>
+    </thead>
+    <tbody>
+		{% for u in Usuario %}
+        <tr>
+			<td>{{u.id}}</td>
+            <td>{{u.nombres}}</td>
+            <td>{{u.correo}}</td>
+			<td>{{u.password}}</td>
+            <td>{{u.id_libro_fav}}</td>
+			<td>{{u.id_autor_fav}}</td>
+        </tr>
+		{% endfor %}
+    </tbody>
+	</table>
+	<h2>Libros</h2>
+          <table class="table table-hover" class="display" style="width:95%">
+    <thead>
+        <tr>
+			<th>Código</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+			<th>Categoría</th>
+            <th>Autor</th>
+        </tr>
+    </thead>
+    <tbody>
+		{% for book in Libros %}
+        <tr>
+			<td>{{book.id}}</td>
+            <td>{{book.nombre}}</td>
+            <td>{{book.precio}}</td>
+			<td>{{book.id_categoria}}</td>
+            <td>{{book.id_autor}}</td>
+        </tr>
+		{% endfor %}
+    </tbody>
+	</table>
+	<h2>Descripcion De Ventas</h2>
+          <table class="table table-hover" class="display" style="width:95%">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Cantidad</th>
+			<th>Libro</th>
+        </tr>
+    </thead>
+    <tbody>
+		{% for d in Descripcion %}
+        <tr>
+            <td>{{d.id}}</td>
+            <td>{{d.cantidad}}</td>
+			<td>{{d.id_libro}}</td>
+        </tr>
+		{% endfor %}
+    </tbody>
+	</table>
+	<h2>Registro De Ventas</h2>
+          <table class="table table-hover" class="display" style="width:95%">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Total</th>
+			<th>Usuario</th>
+            <th>Descripción Venta</th>
+        </tr>
+    </thead>
+    <tbody>
+		{% for re in Registro %}
+        <tr>
+            <td>{{re.id}}</td>
+            <td>{{re.total}}</td>
+			<td>{{re.id_usuario}}</td>
+            <td>{{re.id_descripcion_venta}}</td>
+        </tr>
+		{% endfor %}
+    </tbody>
+	</table>
+ 
+    
+    <!-- Optional JavaScript -->
+    <script>
+		$(document).ready( function () {
+		$('table').DataTable(
+		);
+		} );
+    </script>
+{% endblock %}

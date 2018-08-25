@@ -21,6 +21,6 @@ from ProjectDAW2do import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    path('', include('LeoBook.urls')),
-
+    path('', include('LeoBookAPI.urls')),
+    path('', include('LeoBookConsumer.urls')),
 ]
