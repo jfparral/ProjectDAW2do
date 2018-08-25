@@ -5,9 +5,10 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
   
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-
+<script type="text/css" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"></script>
+<script type="text/css" src="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"></script>
 	<h2>Usuarios</h2>
-          <table class="table_id" class="table table-striped" class="display">
+          <table id="table_id" class="table table-hover" class="display" style="width:95%">
     <thead>
         <tr>
 			<th>Código</th>
@@ -32,7 +33,7 @@
     </tbody>
 	</table>
 	<h2>Libros</h2>
-          <table class="table_id" class="table table-striped" class="display">
+          <table class="table table-hover" class="display" style="width:95%">
     <thead>
         <tr>
 			<th>Código</th>
@@ -40,7 +41,6 @@
             <th>Precio</th>
 			<th>Categoría</th>
             <th>Autor</th>
-			<th>Reserva</th>
         </tr>
     </thead>
     <tbody>
@@ -51,13 +51,12 @@
             <td>{{book.precio}}</td>
 			<td>{{book.id_categoria}}</td>
             <td>{{book.id_autor}}</td>
-			<td>{{book.id_reserva}}</td>
         </tr>
 		{% endfor %}
     </tbody>
 	</table>
 	<h2>Descripcion De Ventas</h2>
-          <table class="table_id" class="table table-striped" class="display">
+          <table class="table table-hover" class="display" style="width:95%">
     <thead>
         <tr>
             <th>Código</th>
@@ -76,7 +75,7 @@
     </tbody>
 	</table>
 	<h2>Registro De Ventas</h2>
-          <table class="table_id" class="table table-striped" class="display">
+          <table class="table table-hover" class="display" style="width:95%">
     <thead>
         <tr>
             <th>Código</th>
@@ -101,8 +100,8 @@
     <!-- Optional JavaScript -->
     <script>
 		$(document).ready( function () {
-		$('.table_id').DataTable(
-		{select: true });
+		$('table').DataTable(
+		);
 		} );
     </script>
 {% endblock %}
