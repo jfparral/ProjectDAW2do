@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
-from .serializers import LibroSerializer
+from .serializers import *
 from .models import *
 import random as rd
 #Mias
@@ -16,7 +16,6 @@ from rest_framework import status
 from rest_framework.response import Response 
 from rest_framework.views import APIView 
 from django.http import Http404,JsonResponse,HttpResponse
-from appRest.forms import ServicioForm
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 def index(request):
