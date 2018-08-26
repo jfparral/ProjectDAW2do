@@ -74,6 +74,18 @@ class user_login(APIView):
         else:
             return JsonResponse({'validacion':False},status=400)
 
+class registro_list(APIView):
+    def get(self, request):
+        registro = Registro_Ventas.objects.all()
+        serializer = RegistroVentasSerializer(registro,many=True)
+        return JsonResponse(serializer.data, safe = False)
+
+class descripcion_venta_list(APIView):
+    def get(self, request):
+        descripcion = Descripcion_Venta.objects.all()
+        serializer = DescripcionVentasSerializer(descripcion,many=True)
+        return JsonResponse(serializer.data, safe = False)
+
 class book_sell(APIView):
     def post(self, request, user,book):
         usuario=get_object_or_404(Usuario, id=user)

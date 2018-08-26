@@ -7,6 +7,8 @@ urlpatterns = [
     url(r'^category/$', views.category_list.as_view()),
     url(r'^book/$', views.book_list.as_view()),
     url(r'^login/$',views.user_login.as_view()), 
+    url(r'^register/$',views.registro_list.as_view()), 
+    url(r'^description_sale/$',views.descripcion_venta_list.as_view()), 
     url(r'^booksell/(?P<user>[0-9]+)/(?P<book>[0-9]+)/$', views.book_sell.as_view()),
     url(r'^user_reserve/(?P<user>[0-9]+)/(?P<book>[0-9]+)/$', views.book_reserve.as_view()),
     url(r'^user_buy/(?P<user>[0-9]+)/$', views.user_detail_compras.as_view()),
