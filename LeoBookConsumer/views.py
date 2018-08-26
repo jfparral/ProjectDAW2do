@@ -12,16 +12,15 @@ from ProjectDAW2do import settings
 
 def index(request):
     if request.method == 'GET':
-        glibros = requests.get('http://127.0.0.1:8000/')
-        libros = glibros.json()
+        booklist= requests.get('http://127.0.0.1:8000/book')
+        books = booklist.json()
         context = {
-            'libros': libros
+            'books' : books
         }
         return render(request, 'LeoBook/index.html', context)
 
 
-def inicio(request):
-    print("Hola")
+def login(request):
     send_mail(
         'Subject here',
         'Here is the message.',
@@ -29,9 +28,18 @@ def inicio(request):
         ['jealvia@espol.edu.ec'],
         fail_silently=False,
     )
-    print("hola2")
-    return render(request, 'LeoBook/inicio.html')
+    return render(request,'LeoBook/inicio.html')
 
+def register(request):
+    booklist = requests.get('http://127.0.0.1:8000/book')
+    authorlist = requests.get('http://127.0.0.1:8000/author')
+    books = booklist.json()
+    authors = authorlist.json()
+    context = {
+        'books' : books,
+        'authors' : authors
+    }
+    return render(request,'LeoBook/inicio.html',context)
 
 def blog(request):
     return render(request, 'LeoBook/blog.html')

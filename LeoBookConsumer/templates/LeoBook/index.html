@@ -1,9 +1,7 @@
-{% extends 'LeoBook/base.html' %} {% load staticfiles %}
-
-{%block content%}
+{% extends 'LeoBook/base.html' %} {% load staticfiles %} {%block content%}
 
 <div class="container my-2">
-    <img src="{% static 'img/bookstore.jpg' %}" class="fondoPrincipal img-fluid p-0 m-0 b-0 ">
+  <img src="{% static 'img/bookstore.jpg' %}" class="fondoPrincipal img-fluid p-0 m-0 b-0 ">
 </div>
 
 <!-- /Main image -->
@@ -12,48 +10,21 @@
 
 <!-- Libros destacados -->
 <div class="container">
-        
-        <h2 class="display-4 text-center mt-2 my-4">Libros destacados de la semana</h2>
 
-        <div class="row py-1 text-center">
-          <div class="col-6 col-sm-6 col-md-4 col-lg-3 caja par1">
-            <img src="{% static 'img/elonmusk.jpg' %}" class="img-fluid libro">
-            <a href="" class="text-white rounded enlaces ">Comprar</a>
-          </div>
-          <div class="col-6 col-sm-6 col-md-4 col-lg-3 caja par1">
-            <img src="{% static 'img/theonething.jpg' %}" class="img-fluid libro">
-            <a href="" class="text-white rounded enlaces">Comprar</a>
-          </div>
-          <div class="col-6 col-sm-6 col-md-4 col-lg-3 caja par2">
-            <img src="{% static 'img/stevejobs.jpg' %}" class="img-fluid libro">
-            <a href="" class="text-white rounded enlaces">Comprar</a>
-          </div>
-          <div class="col-6 col-sm-6 col-md-4 col-lg-3 caja par2">
-            <img src="{% static 'img/habitos.jpg' %}" class="img-fluid libro">
-            <a href="" class="text-white rounded enlaces">Comprar</a>
-          </div>
-          <div class="col-6 col-sm-6 col-md-4 col-lg-3 caja par3">
-            <img src="{% static 'img/frankenstein.jpg' %}" class="img-fluid libro">
-            <a href="" class="text-white rounded enlaces">Comprar</a>
-          </div>
-          <div class="col-6 col-sm-6 col-md-4 col-lg-3 caja par3">
-            <img src="{% static 'img/lasombradelviento.jpg' %}" class="img-fluid libro">
-            <a href="" class="text-white rounded enlaces">Comprar</a>
-          </div>
-          <div class="col-6 col-sm-6 col-md-6 col-lg-3 caja par4">
-            <img src="{% static 'img/harrypotter1.jpg' %}" class="img-fluid libro">
-            <a href="" class="text-white rounded enlaces">Comprar</a>
-          </div>
-          <div class="col-6 col-sm-6 col-md-6 col-lg-3 caja par4">
-            <img src="{% static 'img/1984.jpg' %}" class="img-fluid libro">
-            <a href="" class="text-white rounded enlaces">Comprar</a>
-          </div>
+  <h2 class="display-4 text-center mt-2 my-4">Libros destacados de la semana</h2>
 
-          <a href="#" class="verMas">Ver más</a>
-        </div><hr>
+  <div class="row py-1 text-center">
+    {%for book in books %}
+      <div class="col-6 col-sm-6 col-md-4 col-lg-3 caja par1">
+        <img src="{% static 'img/elonmusk.jpg' %}" class="img-fluid libro">
+        <label for="text">{{book.name}}</label>
+        <a href="" class="text-white rounded enlaces ">Comprar</a>
+      </div>
+    {% endfor %}
+  </div>
 
 
-        
+
 </div>
 <!-- /Libros destacados -->
 
@@ -61,49 +32,58 @@
 
 
 <div class="container pt-4">
-      <!-- about -->
-      <div class="row">
-        <!--  col-xl-5 It is used to give a space of 5/12 in all the row-->
-        <div class="col-md">
-          <h3 class="my-3 text-center">Autores destacados</h3>
-          <h4 class="text-center">Rafael Guzman Morán</h4>
-          <img src="{% static 'img/author.jpg' %}" class="img-fluid rounded p-2 imn">
-              <p class="text-justify">Libro destacado: <strong>El emprendedor ecuatoriano</strong>. Rafael Guzman manifiesta la necesidad que tiene el país de generar emprendedores de forma continua y, a su vez, cómo éstos deben mantener una constante evolución en su camino hacia la independencia laboral.</p>
-              <p class="text-justify">Anímate a descubrir su libro y su historia plagada de éxitos y aprendizajes. <a href="" class="rounded enlaces">Ver más </a></p>
-        </div>
-        <div class="col-md text-center">
-            <h3 class="my-3 ">Próximos eventos</h3>
-            <img src="{% static 'img/pablo.jpg' %}" class="img-fluid rounded p-2 imn">
-              <p class="text-justify">No te pierdas nuestro siguiente conversatorio con Pablo Arosemena Marriot, presidente de la cámara de comercio de Guayaquil.</p>
-            <p class="text-justify">En su último libro <strong>La culpa es de las vacas flacas</strong> destaca las condiciones a las que se ha enfrentado el Ecuador en los últimos 10 años. ¿Cuáles fueron buenas? ¿Cuáles fueron malas?.</p>
-            <p class="text-justify">Si traes un amigo a <strong>La pluma del rey</strong> tienes un descuento del 30% en tu siguiente aventura en papel!</p>
-              
-          <a href="./unete.html" class="rounded enlaces">Únete a nosotros</a>
-          <br>
-        </div>
-        <!-- order-lg-1 to stablish an order in a specific screen size -->
-        <!-- If you use "order" you have to stablish it for all the siblings. Otherwise, it wont function -->
-        <div class="col-md text-center">
-            <h3 class="my-3">Ayúdanos a ayudar</h3>
-            <h5 class="">Con tu ayuda podremos </h5>
-              <ul class="text-justify ml-auto">
-                  <li>Donar libros a escuelas públicas</li>
-                  <li>Brindar descuentos para estudiantes</li>
-                  <li>Contactar autores destacados</li>
-                  <li>Alfabetizar personas mayores a 15 años</li>
-            <li>Promover la lectura en nuestro país</li>
-         
-              </ul>
-            <img src="{% static 'img/help.jpg' %}" class="img-fluid rounded p-2 imn">
-          <a href="" class="rounded enlaces">¿Cómo puedo ayudar?</a>
-        <br>
-        <br>
-        <a href="toplibros.html"> Curiosidades</a>
+  <!-- about -->
+  <div class="row">
+    <!--  col-xl-5 It is used to give a space of 5/12 in all the row-->
+    <div class="col-md">
+      <h3 class="my-3 text-center">Autores destacados</h3>
+      <h4 class="text-center">Rafael Guzman Morán</h4>
+      <img src="{% static 'img/author.jpg' %}" class="img-fluid rounded p-2 imn">
+      <p class="text-justify">Libro destacado:
+        <strong>El emprendedor ecuatoriano</strong>. Rafael Guzman manifiesta la necesidad que tiene el país de generar emprendedores
+        de forma continua y, a su vez, cómo éstos deben mantener una constante evolución en su camino hacia la independencia
+        laboral.</p>
+      <p class="text-justify">Anímate a descubrir su libro y su historia plagada de éxitos y aprendizajes.
+        <a href="" class="rounded enlaces">Ver más </a>
+      </p>
+    </div>
+    <div class="col-md text-center">
+      <h3 class="my-3 ">Próximos eventos</h3>
+      <img src="{% static 'img/pablo.jpg' %}" class="img-fluid rounded p-2 imn">
+      <p class="text-justify">No te pierdas nuestro siguiente conversatorio con Pablo Arosemena Marriot, presidente de la cámara de comercio de Guayaquil.</p>
+      <p class="text-justify">En su último libro
+        <strong>La culpa es de las vacas flacas</strong> destaca las condiciones a las que se ha enfrentado el Ecuador en los últimos
+        10 años. ¿Cuáles fueron buenas? ¿Cuáles fueron malas?.</p>
+      <p class="text-justify">Si traes un amigo a
+        <strong>La pluma del rey</strong> tienes un descuento del 30% en tu siguiente aventura en papel!</p>
 
-        </div>     
-      </div><!-- /about -->
+      <a href="./unete.html" class="rounded enlaces">Únete a nosotros</a>
+      <br>
+    </div>
+    <!-- order-lg-1 to stablish an order in a specific screen size -->
+    <!-- If you use "order" you have to stablish it for all the siblings. Otherwise, it wont function -->
+    <div class="col-md text-center">
+      <h3 class="my-3">Ayúdanos a ayudar</h3>
+      <h5 class="">Con tu ayuda podremos </h5>
+      <ul class="text-justify ml-auto">
+        <li>Donar libros a escuelas públicas</li>
+        <li>Brindar descuentos para estudiantes</li>
+        <li>Contactar autores destacados</li>
+        <li>Alfabetizar personas mayores a 15 años</li>
+        <li>Promover la lectura en nuestro país</li>
 
-        
+      </ul>
+      <img src="{% static 'img/help.jpg' %}" class="img-fluid rounded p-2 imn">
+      <a href="" class="rounded enlaces">¿Cómo puedo ayudar?</a>
+      <br>
+      <br>
+      <a href="toplibros.html"> Curiosidades</a>
+
+    </div>
+  </div>
+  <!-- /about -->
+
+
 
 
 </div>

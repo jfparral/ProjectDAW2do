@@ -99,7 +99,7 @@ DATABASES = {
         'NAME' : 'defaultLeoBook',
         'HOST': 'localhost'
     },
-    'LeoBookApi': {
+    'DBLeoBookApi': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'DBLeoBookApi',
     }
