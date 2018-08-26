@@ -62,11 +62,22 @@ class book_list(APIView):
         serializer = LibroSerializer(libros,many=True)
         return JsonResponse(serializer.data, safe = False)
 
+class login(APIView):
+    def get(self, request,user):
+        try:
+            usuario=Usuario.objects.get(correo=request.POST['correo'])
+        except:
+            return JsonResponse({'validacion':False},status=400)
+        if(usuario.password==request.POST['password']):
+            return JsonResponse({'validacion':True}, safe = False)
+        else:
+            return JsonResponse({'validacion':False},status=400)
+
 class book_sell(APIView):
     def post(self, request, user,book):
         usuario=get_object_or_404(Usuario, id=user)
         libro=get_object_or_404(Libro,id=book)
-        datos={'cantidad':request.POST['cantidad'],'id_libro':book}
+        datos={'cantidad':request.POST['cantidad'],'id_libro':[str(book)]}
         serializer = DescripcionVentasSerializer(data=datos)
         print(serializer)
         print(serializer.is_valid())
@@ -74,7 +85,7 @@ class book_sell(APIView):
             serializer.save()
             venta=Descripcion_Venta.objects.all()
             #Aqui puedde haber error con el len venta
-            datos2={'total':int(request.POST['cantidad'])*libro.precio,'id_usuario':usuario.id,'id_descripcion_venta':len(venta)}
+            datos2={'total':int(request.POST['cantidad'])*libro.precio,'id_usuario':[str(usuario.id)],'id_descripcion_venta':[str(len(venta))]}
             serializer2=RegistroVentasSerializer(data=datos2)
             if serializer2.is_valid():
                 serializer2.save()
@@ -86,7 +97,7 @@ class book_sell(APIView):
 class book_reserve(APIView):
     @csrf_exempt
     def post(self, request,user,book):
-        datos={'cantidad':request.POST['cantidad'],'estado':request.POST['estado'],'id_libro':book,'id_usuario':user}
+        datos={'cantidad':request.POST['cantidad'],'estado':request.POST['estado'],'id_libro':[str(book)],'id_usuario':[str(user)]}
         serializer = ReservaSerializer(data=datos)
         if serializer.is_valid():
             serializer.save()
