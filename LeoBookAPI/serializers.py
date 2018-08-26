@@ -15,7 +15,7 @@ class AutorSerializer(serializers.ModelSerializer):
 class LibroSerializer(serializers.ModelSerializer):
     class Meta:
         model = Libro
-        fields = ('id', 'nombre', 'precio','id_categoria','id_autor')
+        fields = ('id', 'nombre', 'precio','id_categoria','id_autor','image')
 
 class ReservaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,7 +25,7 @@ class ReservaSerializer(serializers.ModelSerializer):
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ('id', 'nombres', 'correo','password','id_libro_fav','id_autor_fav')
+        fields = ('id', 'nombres', 'correo','password','id_libro_fav','id_autor_fav','image')
 
 class DescripcionVentasSerializer(serializers.ModelSerializer):
     class Meta:
@@ -40,12 +40,12 @@ class RegistroVentasSerializer(serializers.ModelSerializer):
 class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contenido_Blog
-        fields = ('id', 'titulo', 'contenido', 'autor','fecha')
+        fields = ('id', 'titulo', 'contenido', 'autor','fecha','image')
 
 class EventoSerializer(serializers.ModelSerializer):
     class Meta:
         model=Contenido_Evento
-        fields=('id','titulo', 'contenido','fecha')
+        fields=('id','titulo', 'contenido','fecha','image')
 
 class SuscripcionSerializer(serializers.ModelSerializer):
     class Meta:

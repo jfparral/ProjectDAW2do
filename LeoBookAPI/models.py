@@ -19,6 +19,7 @@ class Libro(models.Model):
     stock=models.IntegerField()
     id_categoria=models.ManyToManyField(Categoria)
     id_autor=models.ManyToManyField(Autor)
+    image = models.ImageField(upload_to='static/img/',blank=True, null=True)
     def __str__(self):
         return self.nombre
 
@@ -29,6 +30,7 @@ class Usuario(models.Model):
     is_staff=models.BooleanField(default=True)
     id_libro_fav=models.ManyToManyField(Libro)
     id_autor_fav=models.ManyToManyField(Autor)
+    image = models.ImageField(upload_to='static/img/',blank=True, null=True)
     def __str__(self):
         return self.nombres
 
@@ -58,6 +60,7 @@ class Contenido_Blog(models.Model):
     contenido = models.CharField(max_length=5000,blank=True, null=True)
     autor = models.CharField(max_length=100,blank=False, null=True)
     fecha = models.DateField(blank=False, null=True)
+    image = models.ImageField(upload_to='static/img/',blank=True, null=True)
     def __str__(self):
         return self.titulo
 
@@ -65,6 +68,7 @@ class Contenido_Evento(models.Model):
     titulo = models.CharField(max_length=250, blank=True, null=True)
     contenido = models.CharField(max_length=5000,blank=True, null=True)
     fecha=models.DateField()
+    image = models.ImageField(upload_to='static/img/',blank=True, null=True)
     def __str__(self):
         return self.titulo
 
