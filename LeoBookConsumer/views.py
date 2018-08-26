@@ -13,40 +13,48 @@ import random as rd
 
 
 def index(request):
-    import os
-    dirname = os.path.dirname(__file__)
-    filename = os.path.join(dirname, 'templates\\LeoBook\\mycsv.csv')
-    lib=Libro.objects.all()
-    d={}
-    for elem in lib:
-        l1=[]
-        l2=[]
-        for aut in elem.id_autor.all():
-            l1.append(aut.nombre)
-        for cc in elem.id_categoria.all():
-            l2.append(cc.nombre)
-        _aut=",".join(l1)
-        _cat=",".join(l2)
-        if _aut not in d:
-            d[_aut]={_cat:[elem]}
-        else:
-            if _cat not in d[_aut]:
-                d[_aut][_cat]=[elem]
-            else:
-                d[_aut][_cat].append(elem)
-    f=open(filename,"w",encoding="utf-8")
-    f.write("id,value\n")
-    f.write("LeoBook,\n")
-    for el in d:
-        f.write("LeoBook|"+str(el)+",\n")
-        for elemento in d[el]:
-            f.write("LeoBook|"+str(el)+"|"+str(elemento)+",\n")
-            for nin in d[el][elemento]:
-                f.write("LeoBook|"+str(el) + "|" + str(elemento)+"|"+nin.nombre + "," + str(rd.randint(100, 1500)) + ",\n")
-    f.close()
     if request.method == 'GET':
         booklist= requests.get('http://127.0.0.1:8000/book/')
         books = booklist.json()
+        import os
+        dirname = os.path.dirname(__file__)
+        filename = os.path.join(dirname, 'templates\\LeoBook\\mycsv.csv')
+        d={}
+        print(books)
+        for elem in books:
+            l1=[]
+            l2=[]
+            for aut in elem['id_autor']:
+                lis_aut=requests.get('http://127.0.0.1:8000/author/')
+                lis_aut=lis_aut.json()
+                for a in lis_aut:
+                    if a['id']==aut:
+                        l1.append(a['nombre'])        
+            for cc in elem['id_categoria']:
+                lis_cat=requests.get('http://127.0.0.1:8000/category/')
+                lis_cat=lis_cat.json()
+                for c in lis_cat:
+                    if c['id']==cc:
+                        l2.append(c['nombre']) 
+            _aut=",".join(l1)
+            _cat=",".join(l2)
+            if _aut not in d:
+                d[_aut]={_cat:[elem]}
+            else:
+                if _cat not in d[_aut]:
+                    d[_aut][_cat]=[elem]
+                else:
+                    d[_aut][_cat].append(elem)
+        f=open(filename,"w",encoding="utf-8")
+        f.write("id,value\n")
+        f.write("LeoBook,\n")
+        for el in d:
+            f.write("LeoBook|"+str(el)+",\n")
+            for elemento in d[el]:
+                f.write("LeoBook|"+str(el)+"|"+str(elemento)+",\n")
+                for nin in d[el][elemento]:
+                    f.write("LeoBook|"+str(el) + "|" + str(elemento)+"|"+str(nin['nombre']) + "," + str(rd.randint(100, 1500)) + ",\n")
+        f.close()
         context = {
             'books' : books
         }
@@ -103,7 +111,15 @@ def blog(request):
 def csv(request):
     return render(request,'LeoBook/mycsv.csv')
 def chart(request):
-    return render(request, 'LeoBook/chart.html',{'Libros':Libro.objects.all(),'Registro':Registro_Ventas.objects.all(),'Descripcion':Descripcion_Venta.objects.all(),'Usuario':Usuario.objects.all()})
+    booklist = requests.get('http://127.0.0.1:8000/book/')
+    authorlist = requests.get('http://127.0.0.1:8000/author/')
+    books = booklist.json()
+    authors = authorlist.json()
+    reglist = requests.get('http://127.0.0.1:8000/register/')
+    salelist = requests.get('http://127.0.0.1:8000/description_sale/')
+    reg = reglist.json()
+    sale = salelist.json()
+    return render(request, 'LeoBook/chart.html',{'Libros':books,'Registro':reg,'Descripcion':sale})
 
 
 def unete(request):

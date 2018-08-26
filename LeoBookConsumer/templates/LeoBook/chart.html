@@ -85,31 +85,6 @@ function radialPoint(x, y) {
 }
 
 </script>
-	<h2>Usuarios</h2>
-          <table id="table_id" class="table table-hover" class="display" style="width:95%">
-    <thead>
-        <tr>
-			<th>Código</th>
-            <th>Nombres</th>
-            <th>Correo</th>
-			<th>Contraseña</th>
-            <th>Libro Favorito</th>
-			<th>Autor Favorito</th>
-        </tr>
-    </thead>
-    <tbody>
-		{% for u in Usuario %}
-        <tr>
-			<td>{{u.id}}</td>
-            <td>{{u.nombres}}</td>
-            <td>{{u.correo}}</td>
-			<td>{{u.password}}</td>
-            <td>{{u.id_libro_fav.all}}</td>
-			<td>{{u.id_autor_fav.all}}</td>
-        </tr>
-		{% endfor %}
-    </tbody>
-	</table>
 	<h2>Libros</h2>
           <table class="table table-hover" class="display" style="width:95%">
     <thead>
