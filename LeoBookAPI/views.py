@@ -196,5 +196,3 @@ class event_id(APIView):
 
 def chart(request):
     return render(request,'LeoBook/chart.html',{'Libros':Libro.objects.all(),'Registro':Registro_Ventas.objects.all(),'Descripcion':Descripcion_Venta.objects.all(),'Usuario':Usuario.objects.all()})
-
-
