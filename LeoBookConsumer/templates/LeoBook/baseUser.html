@@ -34,23 +34,23 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'index'%}">Inicio
+                        <a class="nav-link" href="{% url 'indexUser'%}">Inicio
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{% url 'blog'%}">Blog</a>
+                        <a class="nav-link text-white" href="{% url 'blogUser'%}">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{% url 'nosotros' %}">Nosotros</a>
+                        <a class="nav-link text-white" href="{% url 'nosotrosUser' %}">Nosotros</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Mi cuenta
+                           {{nombre}} 
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{% url 'login' %}">Iniciar sesión</a>
-                            <a class="dropdown-item" href="{% url 'register' %}">Crear cuenta</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'login' %}">Salir</a>
                         </div>
                     </li>
                 </ul>

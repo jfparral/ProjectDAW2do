@@ -1,0 +1,46 @@
+{% extends 'LeoBook/baseUser.html' %} {% load staticfiles %}
+
+{%block content%}
+<div class="container">
+    
+    <div>
+      <h2 class="display-3 text-center text-white my-4 p-3 bg-primary mensajeInicial">Blog</h2>
+    </div>  
+
+    <div class="row">
+      {%for blog in blogs%}
+      <div class="leftcolumn text-justify">
+        <div class="card bg-primary text-white">
+          <h2 class="text-center">{{blog.titulo}}</h2>
+          <h5 class="text-center">{{blog.fecha}}</h5>
+
+          <img src="{% static 'img/kindle.jpg' %}" class="img-fluid imgBlog">
+          <p>{{blog.contenido}}</p>
+          <p><strong>{{blog.autor}}</strong></p>
+        </div>
+      </div>
+      {%endfor%}
+      <div class="rightcolumn">
+        <div class="card bg-primary text-white text-justify">
+          <h2 class="text-center">Los autores</h2>
+          <img src="{% static 'img/students.jpg' %}" class="img-fluid imgBlog">
+          <p>Somos dos estudiantes politécnicos de la carrera de Ingeniería en Computación.</p>
+          
+        </div>
+        <div class="card bg-primary text-white">
+          <h3>Publicaciones más destacadas</h3>
+
+          <p><strong>* Los libros electrónicos están ganando fuerza</strong></p>
+          <p><strong>* Principios básicos del bitcoin</strong></p>
+          <p><strong>* Revolución del BlockChain</strong></p>
+
+        </div>
+        <div class="card bg-primary text-white text-justify">
+          <h3 class="text-center">Acerca de este blog</h3>
+          <p>Este espacio está construido únicamente con el propósito de brindar información de resúmenes, lecciones y datos importantes de los libros que ofrece esta página.</p>
+          <p>Esta página es el resultado de la afición por la lectura de Kevin Urgilés y Leonardo Castro</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

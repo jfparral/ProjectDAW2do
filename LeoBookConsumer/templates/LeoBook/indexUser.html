@@ -1,0 +1,157 @@
+{% extends 'LeoBook/baseUser.html' %} {% load staticfiles %} {%block content%}
+
+<div class="container my-2">
+  <img src="{% static 'img/bookstore.jpg' %}" class="fondoPrincipal img-fluid p-0 m-0 b-0 ">
+</div>
+
+<!-- /Main image -->
+
+
+
+<!-- Libros destacados -->
+<div class="container">
+
+  <h2 class="display-4 text-center mt-2 my-4">Libros destacados de la semana</h2>
+
+  <div class="row py-1 text-center">
+    {%for book in books %}
+      <div class="col-6 col-sm-6 col-md-4 col-lg-3 caja par1">
+        <img src="{{book.image}}" class="img-fluid libro">
+        <label for="text">{{book.nombre}}</label>
+        {%if book.stock > 0 %}
+          <a href="{% url 'comprar' id=book.id %}" class="text-white rounded enlaces">Comprar</a>
+        {%else%}
+          <a href="{% url 'reservar' id=book.id %}" class="text-white rounded enlaces">Reservar</a>
+        {%endif%}
+      </div>
+    {% endfor %}
+  </div>
+
+
+
+</div>
+<!-- /Libros destacados -->
+{% comment %} <svg width="960" height="960" font-family="sans-serif" font-size="10" text-anchor="middle"></svg> {% endcomment %}
+<script src="https://d3js.org/d3.v4.min.js" crossorigin="anonymous"></script>
+<script>
+
+var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
+
+var format = d3.format(",d");
+
+var color = d3.scaleOrdinal(d3.schemeCategory20c);
+
+var pack = d3.pack()
+    .size([width, height])
+    .padding(1.5);
+
+d3.csv("mycsv.csv", function(d) {
+  d.value = +d.value;
+  if (d.value) return d;
+}, function(error, classes) {
+  if (error) throw error;
+
+  var root = d3.hierarchy({children: classes})
+      .sum(function(d) { return d.value; })
+      .each(function(d) {
+        if (id = d.data.id) {
+          var id, i = id.lastIndexOf("|");
+          d.id = id;
+          d.package = id.slice(0, i);
+          d.class = id.slice(i + 1);
+        }
+      });
+
+  var node = svg.selectAll(".node")
+    .data(pack(root).leaves())
+    .enter().append("g")
+      .attr("class", "node")
+      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+  node.append("circle")
+      .attr("id", function(d) { return d.id; })
+      .attr("r", function(d) { return d.r; })
+      .style("fill", function(d) { return color(d.package); });
+
+  node.append("clipPath")
+      .attr("id", function(d) { return "clip-" + d.id; })
+    .append("use")
+      .attr("xlink:href", function(d) { return "#" + d.id; });
+
+  node.append("text")
+      .attr("clip-path", function(d) { return "url(#clip-" + d.id + ")"; })
+    .selectAll("tspan")
+    .data(function(d) { return d.class.split(/(?=[A-Z][^A-Z])/g); })
+    .enter().append("tspan")
+      .attr("x", 0)
+      .attr("y", function(d, i, nodes) { return 13 + (i - nodes.length / 2 - 0.5) * 10; })
+      .text(function(d) { return d; });
+
+  node.append("title")
+      .text(function(d) { return d.id + "\n" + format(d.value); });
+});
+
+</script>
+
+
+
+<div class="container pt-4">
+  <!-- about -->
+  <div class="row">
+    <!--  col-xl-5 It is used to give a space of 5/12 in all the row-->
+    <div class="col-md">
+      <h3 class="my-3 text-center">Autores destacados</h3>
+      <h4 class="text-center">Rafael Guzman Morán</h4>
+      <img src="{% static 'img/author.jpg' %}" class="img-fluid rounded p-2 imn">
+      <p class="text-justify">Libro destacado:
+        <strong>El emprendedor ecuatoriano</strong>. Rafael Guzman manifiesta la necesidad que tiene el país de generar emprendedores
+        de forma continua y, a su vez, cómo éstos deben mantener una constante evolución en su camino hacia la independencia
+        laboral.</p>
+      <p class="text-justify">Anímate a descubrir su libro y su historia plagada de éxitos y aprendizajes.
+        <a href="" class="rounded enlaces">Ver más </a>
+      </p>
+    </div>
+    <div class="col-md text-center">
+      <h3 class="my-3 ">Próximos eventos</h3>
+      <img src="{% static 'img/pablo.jpg' %}" class="img-fluid rounded p-2 imn">
+      <p class="text-justify">No te pierdas nuestro siguiente conversatorio con Pablo Arosemena Marriot, presidente de la cámara de comercio de Guayaquil.</p>
+      <p class="text-justify">En su último libro
+        <strong>La culpa es de las vacas flacas</strong> destaca las condiciones a las que se ha enfrentado el Ecuador en los últimos
+        10 años. ¿Cuáles fueron buenas? ¿Cuáles fueron malas?.</p>
+      <p class="text-justify">Si traes un amigo a
+        <strong>La pluma del rey</strong> tienes un descuento del 30% en tu siguiente aventura en papel!</p>
+
+      <a href="./unete.html" class="rounded enlaces">Únete a nosotros</a>
+      <br>
+    </div>
+    <!-- order-lg-1 to stablish an order in a specific screen size -->
+    <!-- If you use "order" you have to stablish it for all the siblings. Otherwise, it wont function -->
+    <div class="col-md text-center">
+      <h3 class="my-3">Ayúdanos a ayudar</h3>
+      <h5 class="">Con tu ayuda podremos </h5>
+      <ul class="text-justify ml-auto">
+        <li>Donar libros a escuelas públicas</li>
+        <li>Brindar descuentos para estudiantes</li>
+        <li>Contactar autores destacados</li>
+        <li>Alfabetizar personas mayores a 15 años</li>
+        <li>Promover la lectura en nuestro país</li>
+
+      </ul>
+      <img src="{% static 'img/help.jpg' %}" class="img-fluid rounded p-2 imn">
+      <a href="" class="rounded enlaces">¿Cómo puedo ayudar?</a>
+      <br>
+      <br>
+      <a href="toplibros.html"> Curiosidades</a>
+
+    </div>
+  </div>
+  <!-- /about -->
+
+
+
+
+</div>
+
+{% endblock%}
