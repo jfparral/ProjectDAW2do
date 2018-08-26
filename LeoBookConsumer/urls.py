@@ -12,5 +12,7 @@ urlpatterns = [
     path('chart',views.chart,name='chart'),
     path('nosotros',views.nosotros,name='nosotros'),
     path('toplibros',views.toplibros,name='toplibros'),
-    path('unete',views.unete,name='unete')
+    path('unete',views.unete,name='unete'),
+    path('mycsv.csv',views.csv,name='mycsv.csv')
+    
 ]

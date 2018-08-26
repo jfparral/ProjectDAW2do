@@ -7,10 +7,43 @@ import json
 import requests
 from django.core.mail import send_mail
 from ProjectDAW2do import settings
+from LeoBookAPI.models import *
+import random as rd
 # Create your views here.
 
 
 def index(request):
+    import os
+    dirname = os.path.dirname(__file__)
+    filename = os.path.join(dirname, 'templates\\LeoBook\\mycsv.csv')
+    lib=Libro.objects.all()
+    d={}
+    for elem in lib:
+        l1=[]
+        l2=[]
+        for aut in elem.id_autor.all():
+            l1.append(aut.nombre)
+        for cc in elem.id_categoria.all():
+            l2.append(cc.nombre)
+        _aut=",".join(l1)
+        _cat=",".join(l2)
+        if _aut not in d:
+            d[_aut]={_cat:[elem]}
+        else:
+            if _cat not in d[_aut]:
+                d[_aut][_cat]=[elem]
+            else:
+                d[_aut][_cat].append(elem)
+    f=open(filename,"w",encoding="utf-8")
+    f.write("id,value\n")
+    f.write("LeoBook,\n")
+    for el in d:
+        f.write("LeoBook|"+str(el)+",\n")
+        for elemento in d[el]:
+            f.write("LeoBook|"+str(el)+"|"+str(elemento)+",\n")
+            for nin in d[el][elemento]:
+                f.write("LeoBook|"+str(el) + "|" + str(elemento)+"|"+nin.nombre + "," + str(rd.randint(100, 1500)) + ",\n")
+    f.close()
     if request.method == 'GET':
         booklist= requests.get('http://127.0.0.1:8000/book/')
         books = booklist.json()
@@ -67,9 +100,10 @@ def blog(request):
     }
     return render(request, 'LeoBook/blog.html',context)
 
-
+def csv(request):
+    return render(request,'LeoBook/mycsv.csv')
 def chart(request):
-    return render(request, 'LeoBook/chart.html')
+    return render(request, 'LeoBook/chart.html',{'Libros':Libro.objects.all(),'Registro':Registro_Ventas.objects.all(),'Descripcion':Descripcion_Venta.objects.all(),'Usuario':Usuario.objects.all()})
 
 
 def unete(request):
