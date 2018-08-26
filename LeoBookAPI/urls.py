@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^booksell/(?P<user>[0-9]+)/(?P<book>[0-9]+)/$', views.book_sell.as_view()),
     url(r'^user_reserve/(?P<user>[0-9]+)/(?P<book>[0-9]+)/$', views.book_reserve.as_view()),
     url(r'^user_buy/(?P<user>[0-9]+)/$', views.user_detail_compras.as_view()),
+    url(r'^user_id/(?P<id>[0-9]+)/$', views.user_id.as_view()),
     url(r'^user_register/$', views.crear.as_view()),
     url(r'^user_update/(?P<user>[0-9]+)/$', views.user_update.as_view()),
     url(r'^user_delete/(?P<user>[0-9]+)/$', views.user_delete.as_view()),

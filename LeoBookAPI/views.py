@@ -70,9 +70,16 @@ class user_login(APIView):
         except:
             return JsonResponse({'validacion':False},status=400)
         if(usuario.password==request.POST['password']):
-            return JsonResponse({'validacion':True}, safe = False)
+            serializer = UsuarioSerializer(usuario,many=True)
+            return JsonResponse(serializer.data, safe = False)
         else:
             return JsonResponse({'validacion':False},status=400)
+
+class user_id(APIView):
+    def get(self, request,id):
+        usuario = get_object_or_404(Usuario, pk= id)
+        serializer = UsuarioSerializer(usuario,many=True)
+        return JsonResponse(serializer.data,safe = False)
 
 class registro_list(APIView):
     def get(self, request):

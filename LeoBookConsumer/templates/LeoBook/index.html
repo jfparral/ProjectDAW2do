@@ -16,9 +16,13 @@
   <div class="row py-1 text-center">
     {%for book in books %}
       <div class="col-6 col-sm-6 col-md-4 col-lg-3 caja par1">
-        <img src="{% static 'img/elonmusk.jpg' %}" class="img-fluid libro">
+        <img src="{{book.image}}" class="img-fluid libro">
         <label for="text">{{book.nombre}}</label>
-        <a href="" class="text-white rounded enlaces ">Comprar</a>
+        {%if book.stock > 0 %}
+          <a href="{% url 'comprar' id=book.id %}" class="text-white rounded enlaces">Comprar</a>
+        {%else%}
+          <a href="{% url 'reservar' id=book.id %}" class="text-white rounded enlaces">Reservar</a>
+        {%endif%}
       </div>
     {% endfor %}
   </div>
@@ -27,7 +31,7 @@
 
 </div>
 <!-- /Libros destacados -->
-<svg width="960" height="960" font-family="sans-serif" font-size="10" text-anchor="middle"></svg>
+{% comment %} <svg width="960" height="960" font-family="sans-serif" font-size="10" text-anchor="middle"></svg> {% endcomment %}
 <script src="https://d3js.org/d3.v4.min.js" crossorigin="anonymous"></script>
 <script>
 

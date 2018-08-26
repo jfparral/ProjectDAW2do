@@ -13,6 +13,7 @@ urlpatterns = [
     path('nosotros',views.nosotros,name='nosotros'),
     path('toplibros',views.toplibros,name='toplibros'),
     path('unete',views.unete,name='unete'),
-    path('mycsv.csv',views.csv,name='mycsv.csv')
-    
+    path('mycsv.csv',views.csv,name='mycsv.csv'),
+    path('comprar/<int:id>',views.comprar,name='comprar'),
+    path('reservar/<int:id>',views.reservar,name='reservar')
 ]

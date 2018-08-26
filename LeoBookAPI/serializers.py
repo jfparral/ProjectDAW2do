@@ -15,7 +15,7 @@ class AutorSerializer(serializers.ModelSerializer):
 class LibroSerializer(serializers.ModelSerializer):
     class Meta:
         model = Libro
-        fields = ('id', 'nombre', 'precio','id_categoria','id_autor','image')
+        fields = ('id', 'nombre', 'stock','precio','id_categoria','id_autor','image')
 
 class ReservaSerializer(serializers.ModelSerializer):
     class Meta:

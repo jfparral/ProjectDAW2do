@@ -75,12 +75,19 @@ def login(request):
 def authenticate(request):
     if request.method == "POST":
         respuesta = requests.get('http://127.0.0.1:8000/login/', data = {'correo' : request.POST['correo'], 'password' : request.POST["password"]})
-        login = respuesta.json()
-        print(login)
-        if login['validacion'] == True:
-            return render(request,'LeoBook/dashboard.html')
+        user = respuesta.json()
+        print(user)
+        if respuesta.status_code == 400:
+            return redirect('login')
         else:
-            return render(request,'LeoBook/inicio.html')
+            request.session['user_name'] = user.nombre
+            request.session['user_id'] = user.id
+            context = {
+                'user' : user
+            }
+            response = render(request,'LeoBook/dashboard.html',context)
+            return response
+            
 
 
 def register(request):
@@ -132,3 +139,15 @@ def nosotros(request):
 
 def toplibros(request):
     return render(request, 'LeoBook/toplibros.html')
+
+def comprar(request,id):
+    id_book = id
+    response = render(request,'LeoBook/inicio.html')
+    response.set_cookie('id_book', id_book)
+    return response
+
+def reservar(request,id):
+    id_book = id
+    response = render(request,'LeoBook/inicio.html')
+    response.set_cookie('id_book', id_book)
+    return response
