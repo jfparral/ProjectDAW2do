@@ -66,11 +66,13 @@ class user_login(APIView):
     def get(self, request):
         try:
             print(request.POST['correo'])
-            usuario=Usuario.objects.get(correo=request.POST['correo'])
+            usuario=Usuario.objects.get(id=1)
+            print(usuario.nombres)
         except:
             return JsonResponse({'validacion':False},status=400)
         if(usuario.password==request.POST['password']):
-            serializer = UsuarioSerializer(usuario,many=True)
+            print("se fue")
+            serializer = UsuarioSerializer(usuario,many=False)
             return JsonResponse(serializer.data, safe = False)
         else:
             return JsonResponse({'validacion':False},status=400)
@@ -134,7 +136,7 @@ class user_detail_compras(APIView):
 class crear(APIView):
     def post(self, request):
         datos={'nombres':request.POST['nombre'],'correo':request.POST['correo'],'password':request.POST['password']
-        ,'id_libro_fav':[request.POST['id_libro_fav']],'id_autor_fav':[request.POST['id_autor_fav']],'image' : request.FILES['image'].file}
+        ,'id_libro_fav':[request.POST['id_libro_fav']],'id_autor_fav':[request.POST['id_autor_fav']]}
         serializer = UsuarioSerializer(data=datos)
         if serializer.is_valid():
             serializer.save()

@@ -30,7 +30,6 @@ class Usuario(models.Model):
     is_staff=models.BooleanField(default=True)
     id_libro_fav=models.ManyToManyField(Libro)
     id_autor_fav=models.ManyToManyField(Autor)
-    image = models.ImageField(upload_to='static/img/',blank=True, null=True)
     def __str__(self):
         return self.nombres
 

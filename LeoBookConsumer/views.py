@@ -76,12 +76,11 @@ def authenticate(request):
     if request.method == "POST":
         respuesta = requests.get('http://127.0.0.1:8000/login/', data = {'correo' : request.POST['correo'], 'password' : request.POST["password"]})
         user = respuesta.json()
-        print(user)
         if respuesta.status_code == 400:
             return redirect('login')
         else:
-            request.session['user_name'] = user.nombre
-            request.session['user_id'] = user.id
+            request.session['user_name'] = user['nombres']
+            request.session['user_id'] = user['id']
             context = {
                 'user' : user
             }

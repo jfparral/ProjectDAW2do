@@ -25,7 +25,7 @@ class ReservaSerializer(serializers.ModelSerializer):
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ('id', 'nombres', 'correo','password','id_libro_fav','id_autor_fav','image')
+        fields = ('id', 'nombres', 'correo','password','id_libro_fav','id_autor_fav')
 
 class DescripcionVentasSerializer(serializers.ModelSerializer):
     class Meta:
