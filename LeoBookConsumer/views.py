@@ -71,6 +71,7 @@ def login(request):
     ) """
     return render(request,'LeoBook/inicio.html')
 
+
 @csrf_exempt 
 def authenticate(request):
     if request.method == "POST":
