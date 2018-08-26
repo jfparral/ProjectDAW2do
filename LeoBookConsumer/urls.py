@@ -17,6 +17,7 @@ urlpatterns = [
     path('nosotros',views.nosotros,name='nosotros'),
     path('nosotrosUser',views.nosotrosUser,name='nosotrosUser'),
     path('toplibros',views.toplibros,name='toplibros'),
+    path('toplibrosUser',views.toplibrosUser,name='toplibrosUser'),
     path('unete',views.unete,name='unete'),
     path('mycsv.csv',views.csv,name='mycsv.csv'),
     path('comprar/<int:id>',views.comprar,name='comprar'),

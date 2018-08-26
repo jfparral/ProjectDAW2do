@@ -230,6 +230,13 @@ def nosotrosUser(request):
 def toplibros(request):
     return render(request, 'LeoBook/toplibros.html')
 
+def toplibrosUser(request):
+    context = {
+        'nombre' : request.session['user_name'],
+        'id': request.session['user_id'],
+    }
+    return render(request, 'LeoBook/toplibrosUser.html',context)
+
 def comprar(request,id):
     id_book = id
     response = render(request,'LeoBook/inicio.html')
