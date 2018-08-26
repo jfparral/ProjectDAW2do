@@ -63,8 +63,9 @@ class book_list(APIView):
         return JsonResponse(serializer.data, safe = False)
 
 class user_login(APIView):
-    def get(self, request,user):
+    def get(self, request):
         try:
+            print(request.POST['correo'])
             usuario=Usuario.objects.get(correo=request.POST['correo'])
         except:
             return JsonResponse({'validacion':False},status=400)
