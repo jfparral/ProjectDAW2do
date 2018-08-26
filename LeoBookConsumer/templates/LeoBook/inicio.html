@@ -7,7 +7,8 @@
 <!-- /Mensaje Inicial -->
   
   <div class="container mt-3 mb-0">
-    <form class="form-signin">
+    <form class="form-signin" method="POST" action="{% url 'authenticate'%}">
+      {% csrf_token %}
       <div class="text-center mb-4">
         <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
         <h1 class="h3 mt-3 mb-3 font-weight-normal">Inicio de sesión</h1>
@@ -15,12 +16,12 @@
       </div>
 
       <div class="form-label-group my-3">
-        <input type="email" id="inputEmail" class="form-control" placeholder="Correo electrónico" required autofocus>
+        <input type="email" id="inputEmail" name="correo" class="form-control" placeholder="Correo electrónico" required autofocus>
         
       </div>
 
       <div class="form-label-group my-3">
-        <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Contraseña" required>
       </div>
 
       <div class="checkbox mb-3">

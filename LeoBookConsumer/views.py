@@ -30,6 +30,13 @@ def login(request):
     ) """
     return render(request,'LeoBook/inicio.html')
 
+@csrf_exempt 
+def authenticate(request):
+    if request.method == "POST":
+        user = requests.post('http://127.0.0.1:8000/login/', data = {'correo' : request.POST['correo'], 'password' : request.POST["password"]})
+        return render(request,'LeoBook/dashboard.html')
+
+
 def register(request):
     booklist = requests.get('http://127.0.0.1:8000/book/')
     authorlist = requests.get('http://127.0.0.1:8000/author/')
