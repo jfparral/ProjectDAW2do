@@ -179,14 +179,12 @@ class blog_id(APIView):
         return JsonResponse(serializer.data, safe = False)
 
 class event_list(APIView):
-    @csrf_exempt
     def get(self, request):
         evento = Contenido_Evento.objects.all()
         serializer = EventoSerializer(evento,many=True)
         return JsonResponse(serializer.data, safe = False)
 
 class event_id(APIView):
-    @csrf_exempt
     def get(self, request,event_id):
         evento = get_object_or_404(Contenido_Evento,pk=event_id)
         serializer = EventoSerializer(evento)

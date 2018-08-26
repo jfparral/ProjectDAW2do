@@ -14,7 +14,7 @@ import random as rd
 
 def index(request):
     if request.method == 'GET':
-        booklist= requests.get('http://127.0.0.1:8000/book/')
+        booklist = requests.get('http://127.0.0.1:8000/book/')
         books = booklist.json()
         import os
         dirname = os.path.dirname(__file__)
@@ -179,6 +179,24 @@ def blogUser(request):
         'blogs' : blogs
     }
     return render(request, 'LeoBook/blogUser.html',context)
+
+def events(request):
+    event_list = requests.get('http://127.0.0.1:8000/events/')
+    events = event_list.json()
+    context = {
+        'events' : events
+    }
+    return render(request, 'LeoBook/events.html',context)
+
+def eventsUser(request):
+    event_list = requests.get('http://127.0.0.1:8000/events/')
+    events = event_list.json()
+    context = {
+        'events' : events,
+        'nombre' : request.session['user_name'],
+        'id': request.session['user_id']
+    }
+    return render(request, 'LeoBook/eventsUser.html',context)
 
 def csv(request):
     return render(request,'LeoBook/mycsv.csv')

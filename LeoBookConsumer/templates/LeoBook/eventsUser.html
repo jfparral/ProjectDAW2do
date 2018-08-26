@@ -1,4 +1,4 @@
-{% extends 'LeoBook/base.html' %} {% load staticfiles %}
+{% extends 'LeoBook/baseUser.html' %} {% load staticfiles %}
 
 {%block content%}
 <div class="container">
@@ -8,15 +8,14 @@
     </div>  
 
     <div class="row">
-      {%for blog in blogs%}
+      {%for event in events%}
       <div class="leftcolumn text-justify">
         <div class="card bg-primary text-white">
-          <h2 class="text-center">{{blog.titulo}}</h2>
-          <h5 class="text-center">{{blog.fecha}}</h5>
+          <h2 class="text-center">{{event.titulo}}</h2>
+          <h5 class="text-center">{{event.fecha}}</h5>
 
-          <img src="{{blog.image}}" class="img-fluid imgBlog">
-          <p>{{blog.contenido}}</p>
-          <p><strong>{{blog.autor}}</strong></p>
+          <img src="{{event.image}}" class="img-fluid imgBlog">
+          <p>{{event.contenido}}</p>
         </div>
       </div>
       {%endfor%}
@@ -28,7 +27,7 @@
           
         </div>
         <div class="card bg-primary text-white">
-          <h3>Publicaciones más destacadas</h3>
+          <h3>Eventos más destacadas</h3>
 
           <p><strong>* Los libros electrónicos están ganando fuerza</strong></p>
           <p><strong>* Principios básicos del bitcoin</strong></p>

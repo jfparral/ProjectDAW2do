@@ -18,6 +18,6 @@ urlpatterns = [
     url(r'^user_delete/(?P<user>[0-9]+)/$', views.user_delete.as_view()),
     url(r'^blog/$', views.blog_list.as_view()),
     url(r'^blog_id/(?P<blog_id>[0-9]+)/$', views.blog_id.as_view()),
-    url(r'^event/$', views.event_list.as_view()),
+    url(r'^events/$', views.event_list.as_view()),
     url(r'^event_id/(?P<event_id>[0-9]+)/$', views.event_id.as_view()),
 ]
