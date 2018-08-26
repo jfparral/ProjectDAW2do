@@ -126,7 +126,7 @@ class user_detail_compras(APIView):
 
 class crear(APIView):
     def post(self, request):
-        datos={'nombres':request.POST['nombre'],'correo':request.POST['correo'],'password':request.POST['password']
+        datos={'nombres':request.POST['nombre'],'image' : request.POST['image'],'correo':request.POST['correo'],'password':request.POST['password']
         ,'id_libro_fav':[request.POST['id_libro_fav']],'id_autor_fav':[request.POST['id_autor_fav']]}
         serializer = UsuarioSerializer(data=datos)
         if serializer.is_valid():
