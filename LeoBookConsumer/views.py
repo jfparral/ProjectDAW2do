@@ -21,13 +21,13 @@ def index(request):
 
 
 def login(request):
-    send_mail(
+    """ send_mail(
         'Subject here',
         'Here is the message.',
         settings.EMAIL_HOST_USER,
         ['jealvia@espol.edu.ec'],
         fail_silently=False,
-    )
+    ) """
     return render(request,'LeoBook/inicio.html')
 
 def register(request):
@@ -41,13 +41,19 @@ def register(request):
     }
     return render(request,'LeoBook/registro.html',context)
 
+@csrf_exempt 
 def sendRegister(request):
     if request.method == "POST":
         user = requests.post('http://127.0.0.1:8000/user_register/', data = {'nombre' : request.POST['nombre'],'correo' : request.POST['correo'],'password' : request.POST["password"],'id_libro_fav' : request.POST["id_libro_fav"],'id_autor_fav' : request.POST["id_autor_fav"]})
         return render(request,'LeoBook/inicio.html')
 
 def blog(request):
-    return render(request, 'LeoBook/blog.html')
+    blog_list = requests.get('http://127.0.0.1:8000/blog/')
+    blogs = blog_list.json()
+    context = {
+        'blogs' : blogs
+    }
+    return render(request, 'LeoBook/blog.html',context)
 
 
 def chart(request):

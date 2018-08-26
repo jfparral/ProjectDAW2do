@@ -40,7 +40,7 @@ class RegistroVentasSerializer(serializers.ModelSerializer):
 class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contenido_Blog
-        fields = ('id', 'titulo', 'contenido')
+        fields = ('id', 'titulo', 'contenido', 'autor','fecha')
 
 class EventoSerializer(serializers.ModelSerializer):
     class Meta:

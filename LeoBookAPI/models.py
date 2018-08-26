@@ -56,6 +56,8 @@ class Registro_Ventas(models.Model):
 class Contenido_Blog(models.Model):
     titulo = models.CharField(max_length=250, blank=True, null=True)
     contenido = models.CharField(max_length=5000,blank=True, null=True)
+    autor = models.CharField(max_length=100,blank=False, null=True)
+    fecha = models.DateField(blank=False, null=True)
     def __str__(self):
         return self.titulo
 
