@@ -62,7 +62,7 @@ class book_list(APIView):
         serializer = LibroSerializer(libros,many=True)
         return JsonResponse(serializer.data, safe = False)
 
-class login(APIView):
+class user_login(APIView):
     def get(self, request,user):
         try:
             usuario=Usuario.objects.get(correo=request.POST['correo'])

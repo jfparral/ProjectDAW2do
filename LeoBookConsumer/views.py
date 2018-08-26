@@ -33,8 +33,13 @@ def login(request):
 @csrf_exempt 
 def authenticate(request):
     if request.method == "POST":
-        user = requests.post('http://127.0.0.1:8000/login/', data = {'correo' : request.POST['correo'], 'password' : request.POST["password"]})
-        return render(request,'LeoBook/dashboard.html')
+        respuesta = requests.post('http://127.0.0.1:8000/login/', data = {'correo' : request.POST['correo'], 'password' : request.POST["password"]})
+        login = respuesta.json()
+        print(login)
+        if login.validacion == True:
+            return render(request,'LeoBook/dashboard.html')
+        else:
+            return render(request,'LeoBook/inicio.html')
 
 
 def register(request):
