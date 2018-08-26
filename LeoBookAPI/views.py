@@ -45,21 +45,18 @@ def index(request):
     return JsonResponse(libros.data)
 
 class author_list(APIView):
-    @csrf_exempt
     def get(self, request):
         autores = Autor.objects.all()
         serializer = AutorSerializer(autores,many=True)
         return JsonResponse(serializer.data, safe = False)
 
 class category_list(APIView):
-    @csrf_exempt
     def get(self, request):
         categoria = Categoria.objects.all()
         serializer = CategoriaSerializer(categoria,many=True)
         return JsonResponse(serializer.data, safe = False)
 
 class book_list(APIView):
-    @csrf_exempt
     def get(self, request):
         libros = Libro.objects.all()
         serializer = LibroSerializer(libros,many=True)

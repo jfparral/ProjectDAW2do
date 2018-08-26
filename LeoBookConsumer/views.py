@@ -12,7 +12,7 @@ from ProjectDAW2do import settings
 
 def index(request):
     if request.method == 'GET':
-        booklist= requests.get('http://127.0.0.1:8000/book')
+        booklist= requests.get('http://127.0.0.1:8000/book/')
         books = booklist.json()
         context = {
             'books' : books
@@ -31,15 +31,20 @@ def login(request):
     return render(request,'LeoBook/inicio.html')
 
 def register(request):
-    booklist = requests.get('http://127.0.0.1:8000/book')
-    authorlist = requests.get('http://127.0.0.1:8000/author')
+    booklist = requests.get('http://127.0.0.1:8000/book/')
+    authorlist = requests.get('http://127.0.0.1:8000/author/')
     books = booklist.json()
     authors = authorlist.json()
     context = {
         'books' : books,
         'authors' : authors
     }
-    return render(request,'LeoBook/inicio.html',context)
+    return render(request,'LeoBook/registro.html',context)
+
+def sendRegister(request):
+    if request.method == "POST":
+        user = requests.post('http://127.0.0.1:8000/user_register/', data = {'nombre' : request.POST['nombre'],'correo' : request.POST['correo'],'password' : request.POST["password"],'id_libro_fav' : request.POST["id_libro_fav"],'id_autor_fav' : request.POST["id_autor_fav"]})
+        return render(request,'LeoBook/inicio.html')
 
 def blog(request):
     return render(request, 'LeoBook/blog.html')
