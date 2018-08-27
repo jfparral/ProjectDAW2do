@@ -9,6 +9,10 @@
 	height: 28%;
 }
 
+.btnRegistro{
+	margin-left: 100%;
+}
+
 #btnSaber{
 	display: block;
 	margin-left: auto;
