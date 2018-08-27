@@ -125,7 +125,10 @@ class actualizar_reserva(APIView):
             return JsonResponse({'validacion':False},status=400)
         reserva.cantidad=request.POST['cantidad']
         reserva.save()
-        return JsonResponse({'validacion': True}, status=200)
+        if reserva.cantidad == request.POST['cantidad']:
+            print("si es igual")
+            return JsonResponse({'validacion': True}, status=200)
+        return JsonResponse({'validacion': False}, status=400)
 
 class book_sell(APIView):
     def post(self, request, user,book):

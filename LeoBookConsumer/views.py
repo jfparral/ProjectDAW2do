@@ -287,6 +287,8 @@ def misreservas(request, user):
         gbook = requests.get('http://127.0.0.1:8000/book_id/'+str(reserv['id_libro'][0])+"/")
         book = gbook.json()
         reservas[reserv['id']]['libro']=book
+        reservas[reserv['id']]['image']=book['image']
+        reservas[reserv['id']]['precio']=book['precio']*reserv['cantidad']
         reservas[reserv['id']]['id_usuario']=reserv['id_usuario'][0]
 
     print(reservas)
@@ -296,3 +298,9 @@ def misreservas(request, user):
         'reservas' : reservas
     }
     return render(request,'LeoBook/userReservas.html',context)
+
+def editarReserva(request,user,id):
+    greserva = requests.post('http://127.0.0.1:8000/actualize_reserve/'+str(id)+"/", data={'cantidad':request.POST['cantidad']})
+    print('entro')
+    return redirect('http://127.0.0.1:7000/misreservas/'+str(user))
+    
