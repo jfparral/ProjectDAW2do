@@ -38,6 +38,7 @@ SETTINGS_PATH = os.path.normpath(os.path.dirname(__file__))
 # Application definition
 
 INSTALLED_APPS = [
+    'LeoBookAPI.apps.LeobookConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

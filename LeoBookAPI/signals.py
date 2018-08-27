@@ -39,6 +39,7 @@ def run_before_saving(sender, **kwargs):
                 reserv.estado=False
                 reserv.save()
                 serializer = ReservaSerializer(reserv)
+                print(serializer.is_valid())
                 if serializer.is_valid():
                     serializer.save()
                     print("Posi")
