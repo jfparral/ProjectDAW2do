@@ -39,7 +39,7 @@ class Reserva(models.Model):
     id_libro=models.ManyToManyField(Libro)
     id_usuario=models.ManyToManyField(Usuario)
     def __str__(self):
-        return str(self.id_libro)
+        return str(self.id_libro.get().nombre)
 
 class Descripcion_Venta(models.Model):
     cantidad=models.IntegerField()

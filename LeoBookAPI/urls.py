@@ -5,6 +5,7 @@ from LeoBookAPI import views
 urlpatterns = [
     url(r'^author/$', views.author_list.as_view()),
     url(r'^category/$', views.category_list.as_view()),
+    url(r'^book_id/(?P<id>[0-9]+)/$', views.book_id.as_view()),
     url(r'^book/$', views.book_list.as_view()),
     url(r'^login/$',views.user_login.as_view()), 
     url(r'^register/$',views.registro_list.as_view()), 

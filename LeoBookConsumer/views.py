@@ -278,7 +278,18 @@ def reservarUser(request,id_book,id_user):
 
 def misreservas(request, user):
     greserva = requests.get('http://127.0.0.1:8000/reservar/'+str(user)+"/")
-    reservas = greserva.json()
+    reservas_list = greserva.json()
+    reservas={}
+    for reserv in reservas_list:
+        reservas[reserv['id']]={}
+        reservas[reserv['id']]['cantidad']=reserv['cantidad']
+        reservas[reserv['id']]['estado']=reserv['estado']
+        gbook = requests.get('http://127.0.0.1:8000/book_id/'+str(reserv['id_libro'][0])+"/")
+        book = gbook.json()
+        reservas[reserv['id']]['libro']=book
+        reservas[reserv['id']]['id_usuario']=reserv['id_usuario'][0]
+
+    print(reservas)
     context = {
         'nombre' : request.session['user_name'],
         'id': request.session['user_id'],

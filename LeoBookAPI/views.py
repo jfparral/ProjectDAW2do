@@ -61,15 +61,19 @@ class book_list(APIView):
         libros = Libro.objects.all()
         serializer = LibroSerializer(libros,many=True)
         return JsonResponse(serializer.data, safe = False)
+    
+class book_id(APIView):
+    def get(self, request,id):
+        libro = Libro.objects.get(pk=id)
+        serializer = LibroSerializer(libro,many=False)
+        return JsonResponse(serializer.data, safe = False)
 
 class reservar_id(APIView):
     def get(self, request,id):
-        reserva = Reserva.objects.all()
-        reservas=[]
-        for reser in reserva:
-            if str(reser.id_usuario.get().id)==str(id):
-                reservas.append(reser)
-        return JsonResponse({'reservas':reservas}, safe = False)
+        reserva = Reserva.objects.filter(id_usuario=id)
+        reservas = ReservaSerializer(reserva,many=True)
+        return JsonResponse(reservas.data, safe = False)
+        
 
 class user_login(APIView):
     def get(self, request):
