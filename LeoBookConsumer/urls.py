@@ -20,6 +20,7 @@ urlpatterns = [
     path('toplibrosUser',views.toplibrosUser,name='toplibrosUser'),
     path('unete',views.unete,name='unete'),
     path('mycsv.csv',views.csv,name='mycsv.csv'),
+    path('myAnothercsv.csv',views.anothercsv,name='myAnothercsv.csv'),
     path('comprar/<int:id>',views.comprar,name='comprar'),
     path('reservar/<int:id>',views.reservar,name='reservar'),
     path('reservar/<int:id_user>/<int:id_book>',views.reservarUser,name='reservarUser'),

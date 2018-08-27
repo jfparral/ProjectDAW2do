@@ -9,6 +9,7 @@ from django.core.mail import send_mail
 from ProjectDAW2do import settings
 from LeoBookAPI.models import *
 import random as rd
+import os
 # Create your views here.
 
 
@@ -16,7 +17,6 @@ def index(request):
     if request.method == 'GET':
         booklist = requests.get('http://127.0.0.1:8000/book/')
         books = booklist.json()
-        import os
         dirname = os.path.dirname(__file__)
         filename = os.path.join(dirname, 'templates\\LeoBook\\mycsv.csv')
         d={}
@@ -200,19 +200,46 @@ def eventsUser(request):
 
 def csv(request):
     return render(request,'LeoBook/mycsv.csv')
+def anothercsv(request):
+    return render(request,'LeoBook/myAnothercsv.csv')
 def chart(request):
     booklist = requests.get('http://127.0.0.1:8000/book/')
     authorlist = requests.get('http://127.0.0.1:8000/author/')
+    catlist=requests.get('http://127.0.0.1:8000/category/')
     books = booklist.json()
     authors = authorlist.json()
     reglist = requests.get('http://127.0.0.1:8000/register/')
     salelist = requests.get('http://127.0.0.1:8000/description_sale/')
     reg = reglist.json()
-    sale = salelist.json()
+    sale = salelist.json()   
     return render(request, 'LeoBook/chart.html',{'Libros':books,'Registro':reg,'Descripcion':sale})
 
 
 def unete(request):
+    booklist = requests.get('http://127.0.0.1:8000/book/')
+    books = booklist.json()
+    catlist=requests.get('http://127.0.0.1:8000/category/')
+    categor=catlist.json()
+    dirname = os.path.dirname(__file__)
+    filename = os.path.join(dirname, 'static\\js\\myAnothercsv.csv')
+    dicc={}
+    count=0
+    for elem in books:
+        for cat in elem['id_categoria']:
+            for a in categor:
+                if a['id']==cat:
+                    name_cat=a['nombre']
+                    if name_cat not in dicc:
+                        dicc[name_cat]=1
+                    else:
+                        dicc[name_cat]=dicc[name_cat]+1
+                    count=count+1
+    print(dicc)
+    f=open(filename,"w",encoding="utf-8")
+    f.write("axis,value\n")
+    for v in dicc:
+        f.write(str(v)+","+str(dicc[v]/count)+"\n")
+    f.close() 
     return render(request, 'LeoBook/unete.html')
 
 
@@ -235,6 +262,7 @@ def toplibrosUser(request):
         'nombre' : request.session['user_name'],
         'id': request.session['user_id'],
     }
+    
     return render(request, 'LeoBook/toplibrosUser.html',context)
 
 def comprar(request,id):

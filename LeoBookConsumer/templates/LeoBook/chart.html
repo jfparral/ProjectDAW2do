@@ -1,4 +1,4 @@
-{% extends 'LeoBook/base.html' %} {% load staticfiles %}
+{% extends 'LeoBook/base.html' %} {% load staticfiles %} {% load static %} 
 
 {%block content%}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -33,9 +33,15 @@
 }
 
 </style>
+<div class="container">
+
 <h2 align="center">Gráfico Radial</h2>
-<svg width="1160" height="750"></svg>
-<script src="https://d3js.org/d3.v4.min.js"crossorigin="anonymous"></script>
+
+<div class="row">
+<svg width="1160" height="1160"></svg>
+</div>
+</div>
+<script src="https://d3js.org/d3.v4.min.js" crossorigin="anonymous"></script>
 <script>
 
 var svg = d3.select("svg"),
@@ -85,6 +91,9 @@ function radialPoint(x, y) {
 }
 
 </script>
+
+		<!-- D3.js -->
+		
 	<h2>Libros</h2>
           <table class="table table-hover" class="display" style="width:95%">
     <thead>
@@ -148,7 +157,7 @@ function radialPoint(x, y) {
 		{% endfor %}
     </tbody>
 	</table>
- 
+
     
     <!-- Optional JavaScript -->
     <script>
