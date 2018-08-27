@@ -21,5 +21,7 @@ urlpatterns = [
     path('unete',views.unete,name='unete'),
     path('mycsv.csv',views.csv,name='mycsv.csv'),
     path('comprar/<int:id>',views.comprar,name='comprar'),
-    path('reservar/<int:id>',views.reservar,name='reservar')
+    path('reservar/<int:id>',views.reservar,name='reservar'),
+    path('reservar/<int:id_user>/<int:id_book>',views.reservarUser,name='reservarUser'),
+    path('comprar/<int:id_user>/<int:id_book>',views.comprarUser,name='comprarUser'),
 ]

@@ -248,3 +248,30 @@ def reservar(request,id):
     response = render(request,'LeoBook/inicio.html')
     response.set_cookie('id_book', id_book)
     return response
+
+@csrf_exempt 
+def comprarUser(request,id_book,id_user):
+    if request.method == "POST":
+        id_book = id_book
+        id_book = id_user
+        greserva = requests.post('http://127.0.0.1:8000/booksell/'+str(id_user)+"/"+str(id_book)+"/", data={'cantidad' : request.POST['cantidad']})
+        context = {
+            'nombre' : request.session['user_name'],
+            'id': request.session['user_id'],
+        }
+        return render(request,'LeoBook/userCompras.html',context)
+
+@csrf_exempt 
+def reservarUser(request,id_book,id_user):
+    if request.method == "POST":
+        id_book = id_book
+        id_book = id_user
+        sreserva = requests.post('http://127.0.0.1:8000/user_reserve/'+str(id_user)+"/"+str(id_book)+"/", data={'cantidad' : request.POST['cantidad']})
+        greserva = requests.get('http://127.0.0.1:8000/reservar/'+str(id_user)+"/")
+        reservas = greserva.json()
+        context = {
+            'nombre' : request.session['user_name'],
+            'id': request.session['user_id'],
+            'reservas' : reservas
+        }
+        return render(request,'LeoBook/userReservas.html',context)

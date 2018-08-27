@@ -2,7 +2,7 @@
 
 {%block content%}
 <div class="container">
-        <form method="POST" action="{% url 'sendRegister'%}">
+    <form method="POST" action="{% url 'sendRegister'%}">
     {% csrf_token %}
     <div class="form-row">
         <div class="form-group col-md-6">

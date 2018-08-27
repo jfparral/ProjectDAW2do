@@ -1,0 +1,19 @@
+{% extends 'LeoBook/baseUser.html' %} {% load staticfiles %} 
+{%block content%}
+<div class="container">
+    {%for reserva in reservas %}
+        <div class="row">
+            <div class="col">
+                <label for="text">Libro</label>
+                <label for="text">{{reserva.libro.nombre}}</label>
+                <label for="text">Estado:</label>
+                {%if reserva.estado == True %}
+                    <label for="text">Aún no llegan libros</label>
+                {%else%}
+                    <label for="text">Ya está disponible</label>
+                {%endif%}
+            </div>
+        </div>
+    {%endfor%}
+</div>
+{%endblock%}

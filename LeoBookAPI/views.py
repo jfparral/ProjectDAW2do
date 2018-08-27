@@ -109,26 +109,23 @@ class book_sell(APIView):
         usuario=get_object_or_404(Usuario, id=user)
         libro=get_object_or_404(Libro,id=book)
         datos={'cantidad':request.POST['cantidad'],'id_libro':[str(book)]}
-        serializer = DescripcionVentasSerializer(data=datos)
-        print(serializer)
-        print(serializer.is_valid())
-        if serializer.is_valid():
-            serializer.save()
-            venta=Descripcion_Venta.objects.all()
+        descripcion = DescripcionVentasSerializer(data=datos)
+        if descripcion.is_valid():
+            descripcion.save()
             #Aqui puedde haber error con el len venta
-            datos2={'total':int(request.POST['cantidad'])*libro.precio,'id_usuario':[str(usuario.id)],'id_descripcion_venta':[str(len(venta))]}
+            datos2={'total':int(request.POST['cantidad'])*libro.precio,'id_usuario':[str(usuario.id)],'id_descripcion_venta':[descripcion.id]}
             serializer2=RegistroVentasSerializer(data=datos2)
             if serializer2.is_valid():
                 serializer2.save()
                 return JsonResponse(serializer2.data, status=201)
             else:
-                return JsonResponse(serializer.errors, status=400)
-        return JsonResponse(serializer.errors, status=400)
+                return JsonResponse(serializer2.errors, status=400)
+        return JsonResponse(descripcion.errors, status=400)
 
 class book_reserve(APIView):
     @csrf_exempt
     def post(self, request,user,book):
-        datos={'cantidad':request.POST['cantidad'],'estado':request.POST['estado'],'id_libro':[str(book)],'id_usuario':[str(user)]}
+        datos={'cantidad':request.POST['cantidad'],'estado': True,'id_libro':[str(book)],'id_usuario':[str(user)]}
         serializer = ReservaSerializer(data=datos)
         if serializer.is_valid():
             serializer.save()
