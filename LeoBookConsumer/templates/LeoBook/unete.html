@@ -2,11 +2,12 @@
 
 {%block content%}
 <div class="container text-center ">
+		<h2 align="center">Tendencias en Categorías</h2>
+		<div class="radarChart"></div>
     <h1 class="display-3">Suscríbete</h1>
     <h1 class="display-4 mb-4">¡Es gratis!</h1>
 	<style>
 			body {
-				font-size: 11px;
 				font-weight: 300;
 				fill: #242424;
 				text-align: center;
@@ -15,7 +16,6 @@
 			}
 			
 			.legend {
-				font-family: 'Raleway', sans-serif;
 				fill: #333333;
 			}
 			
@@ -23,8 +23,7 @@
 				fill: #333333;
 			}
 		</style>
-		<h2 align="center">Tendencias en Categorías</h2>
-		<div class="radarChart"></div>
+
     <p class="lead mb-2">Noticias, descuentos y futuros eventos de tu lugar favorito.</p>
 
 
@@ -64,8 +63,7 @@
 			////////////////////////// Data ////////////////////////////// 
 			//////////////////////////////////////////////////////////////
 			var j=$.csv.toObjects("static/js/myAnothercsv.csv");
-			var data = [[{axis:"Ficcion",value:0.6},{axis:"Horror",value:0.4},{axis:"Comedia",value:0.3}]];
-			console.log(j);
+			var data = [j];
 			////////////////////////////////////////////////////////////// 
 			//////////////////// Draw the Chart ////////////////////////// 
 			////////////////////////////////////////////////////////////// 
@@ -82,8 +80,9 @@
 			  roundStrokes: true,
 			  color: color
 			};
+			var dat=[[{axis:"Ficcion",value:0.7},{axis:"Accion",value:0.1},{axis:"Comedia",value:0.1},{axis:"Fantasia",value:0.1}]]
 			//Call function to draw the Radar chart
-			RadarChart(".radarChart", data, radarChartOptions);
+			RadarChart(".radarChart", dat, radarChartOptions);
 		</script>
 
   </div>

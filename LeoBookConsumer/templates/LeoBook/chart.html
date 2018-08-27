@@ -2,9 +2,7 @@
 
 {%block content%}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-  
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
 <script type="text/css" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"></script>
 <script type="text/css" src="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"></script>
 <style>
@@ -93,26 +91,24 @@ function radialPoint(x, y) {
 </script>
 
 		<!-- D3.js -->
-		
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>	
 	<h2>Libros</h2>
           <table class="table table-hover" class="display" style="width:95%">
     <thead>
         <tr>
-			<th>Código</th>
-            <th>Nombre</th>
-            <th>Precio</th>
-			<th>Categoría</th>
-            <th>Autor</th>
+			<th scope="col">Código</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
         </tr>
     </thead>
     <tbody>
 		{% for book in Libros %}
         <tr>
-			<td>{{book.id}}</td>
+			<th scope="row">{{book.id}}</th>
             <td>{{book.nombre}}</td>
             <td>{{book.precio}}</td>
-			<td>{{book.id_categoria.all}}</td>
-            <td>{{book.id_autor.all}}</td>
         </tr>
 		{% endfor %}
     </tbody>
@@ -121,15 +117,15 @@ function radialPoint(x, y) {
           <table class="table table-hover" class="display" style="width:95%">
     <thead>
         <tr>
-            <th>Código</th>
-            <th>Cantidad</th>
-			<th>Libro</th>
+            <th scope="col">Código</th>
+            <th scope="col">Cantidad</th>
+			<th scope="col">Libro</th>
         </tr>
     </thead>
     <tbody>
 		{% for d in Descripcion %}
         <tr>
-            <td>{{d.id}}</td>
+			<th scope="row">{{d.id}}</th>
             <td>{{d.cantidad}}</td>
 			<td>{{d.id_libro}}</td>
         </tr>
@@ -140,16 +136,16 @@ function radialPoint(x, y) {
           <table class="table table-hover" class="display" style="width:95%">
     <thead>
         <tr>
-            <th>Código</th>
-            <th>Total</th>
-			<th>Usuario</th>
-            <th>Descripción Venta</th>
+            <th scope="col">Código</th>
+            <th scope="col">Total</th>
+			<th scope="col">Usuario</th>
+            <th scope="col">Descripción Venta</th>
         </tr>
     </thead>
     <tbody>
 		{% for re in Registro %}
         <tr>
-            <td>{{re.id}}</td>
+		<th scope="row">{{re.id}}</th>
             <td>{{re.total}}</td>
 			<td>{{re.id_usuario}}</td>
             <td>{{re.id_descripcion_venta}}</td>

@@ -36,8 +36,8 @@ def index(request):
                 for c in lis_cat:
                     if c['id']==cc:
                         l2.append(c['nombre']) 
-            _aut=",".join(l1)
-            _cat=",".join(l2)
+            _aut=";".join(l1)
+            _cat=";".join(l2)
             if _aut not in d:
                 d[_aut]={_cat:[elem]}
             else:
@@ -85,8 +85,8 @@ def indexUser(request):
                 for c in lis_cat:
                     if c['id']==cc:
                         l2.append(c['nombre']) 
-            _aut=",".join(l1)
-            _cat=",".join(l2)
+            _aut=";".join(l1)
+            _cat=";".join(l2)
             if _aut not in d:
                 d[_aut]={_cat:[elem]}
             else:
