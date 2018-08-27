@@ -7,7 +7,7 @@ urlpatterns = [
     url(r'^category/$', views.category_list.as_view()),
     url(r'^book_id/(?P<id>[0-9]+)/$', views.book_id.as_view()),
     url(r'^book/$', views.book_list.as_view()),
-    url(r'^login/$',views.user_login.as_view()), 
+    url(r'^login_api/$',views.user_login.as_view()), 
     url(r'^register/$',views.registro_list.as_view()), 
     url(r'^description_sale/$',views.descripcion_venta_list.as_view()),
     url(r'^delete_reserve/(?P<id>[0-9]+)/$', views.eliminar_reserva.as_view()),

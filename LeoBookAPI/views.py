@@ -73,7 +73,7 @@ class user_login(APIView):
     def get(self, request):
         try:
             print(request.POST['correo'])
-            usuario=Usuario.objects.get(id=1)
+            usuario=Usuario.objects.get(correo=request.POST['correo'])
             print(usuario.nombres)
         except:
             return JsonResponse({'validacion':False},status=400)
@@ -171,20 +171,26 @@ class crear(APIView):
 
 class user_update(APIView):
     def post(self, request, user):
-        usuario = get_object_or_404(Usuario, pk=user)
-        usuario.nombres=request.POST['nombres']
+        usuario = get_object_or_404(Usuario, id=user)
+        usuario.nombres=request.POST['nombre']
         usuario.correo=request.POST['correo']
         usuario.password=request.POST['password']
-        usuario.id_libro_fav=request.POST['id_libro_fav']
-        usuario.id_autor_fav=request.POST['id_autor_fav']
+        print("es una prueba"+str(request.POST['id_libro_fav']))
+        if request.POST['id_libro_fav'] != "nada":
+            usuario.id_libro_fav.add(request.POST['id_libro_fav'])
+        if request.POST['id_autor_fav'] != "nada":
+            usuario.id_autor_fav.add(request.POST['id_autor_fav'])
         usuario.save()
         return JsonResponse({'validacion': True}, status=200)
 
 class user_delete(APIView):
-    def post(self, request, user):
-        usuario = get_object_or_404(Usuario, pk=user)
+    def get(self, request, user):
+        try:
+            usuario=Usuario.objects.get(id=user)
+        except:
+            return JsonResponse({'validacion':False},status=400)
         usuario.delete()
-        return HttpResponse(status=204)
+        return JsonResponse({'validacion':True},status=200)
 
 class blog_list(APIView):
     @csrf_exempt

@@ -126,7 +126,7 @@ def login(request):
 @csrf_exempt 
 def authenticate(request):
     if request.method == "POST":
-        respuesta = requests.get('http://127.0.0.1:8000/login/', data = {'correo' : request.POST['correo'], 'password' : request.POST["password"]})
+        respuesta = requests.get('http://127.0.0.1:8000/login_api/', data = {'correo' : request.POST['correo'], 'password' : request.POST["password"]})
         user = respuesta.json()
         if respuesta.status_code == 400:
             return redirect('login')
@@ -159,7 +159,7 @@ def register(request):
 @csrf_exempt 
 def sendRegister(request):
     if request.method == "POST":
-        user = requests.post('http://127.0.0.1:8000/user_register/', data = {'nombre' : request.POST['nombre'],'image' : request.POST['image'], 'correo' : request.POST['correo'],'password' : request.POST["password"],'id_libro_fav' : request.POST["id_libro_fav"],'id_autor_fav' : request.POST["id_autor_fav"]})
+        user = requests.post('http://127.0.0.1:8000/user_register/', data = {'nombre' : request.POST['nombre'],'correo' : request.POST['correo'],'password' : request.POST["password"],'id_libro_fav' : request.POST["id_libro_fav"],'id_autor_fav' : request.POST["id_autor_fav"]})
         return render(request,'LeoBook/inicio.html')
 
 def blog(request):
@@ -318,7 +318,7 @@ def micuenta(request,user):
     return render(request,'LeoBook/updateUser.html',context)
 
 def actualizarCuenta(request,id):
-    guser = requests.post('http://127.0.0.1:8000/user_delete/'+str(id)+"/", data = {'nombre' : request.POST['nombre'], 'correo' : request.POST['correo'],'password' : request.POST["password"],'id_libro_fav' : request.POST["id_libro_fav"],'id_autor_fav' : request.POST["id_autor_fav"]} )
+    guser = requests.post('http://127.0.0.1:8000/user_update/'+str(id)+"/", data = {'nombre' : request.POST['nombre'], 'correo' : request.POST['correo'],'password' : request.POST["password"],'id_libro_fav' : request.POST["id_libro_fav"],'id_autor_fav' : request.POST["id_autor_fav"]} )
     return redirect('http://127.0.0.1:7000/micuenta/'+str(id))
 
 def eliminarCuenta(request,id):
