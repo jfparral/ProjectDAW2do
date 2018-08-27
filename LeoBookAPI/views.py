@@ -87,7 +87,7 @@ class user_login(APIView):
 class user_id(APIView):
     def get(self, request,id):
         usuario = get_object_or_404(Usuario, pk= id)
-        serializer = UsuarioSerializer(usuario,many=True)
+        serializer = UsuarioSerializer(usuario,many=False)
         return JsonResponse(serializer.data,safe = False)
 
 class registro_list(APIView):

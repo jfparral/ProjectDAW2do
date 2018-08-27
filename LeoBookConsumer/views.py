@@ -300,3 +300,24 @@ def eliminarReserva(request,user,id):
     greserva = requests.get('http://127.0.0.1:8000/delete_reserve/'+str(id)+"/")
     print('entro')
     return redirect('http://127.0.0.1:7000/misreservas/'+str(user))
+
+def micuenta(request,user):
+    guser = requests.get('http://127.0.0.1:8000/user_id/'+str(user)+"/")
+    user = guser.json()
+    booklist = requests.get('http://127.0.0.1:8000/book/')
+    authorlist = requests.get('http://127.0.0.1:8000/author/')
+    books = booklist.json()
+    authors = authorlist.json()
+    context = {
+        'nombre' : request.session['user_name'],
+        'id': request.session['user_id'],
+        'user' : user,
+        'books' : books,
+        'authors' : authors
+    }
+    return render(request,'LeoBook/updateUser.html',context)
+
+
+def eliminarCuenta(request,id):
+    guser = requests.get('http://127.0.0.1:8000/user_delete/'+str(id)+"/")
+    return redirect('http://127.0.0.1:7000/')

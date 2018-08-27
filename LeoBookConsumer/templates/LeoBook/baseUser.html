@@ -34,7 +34,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'indexUser'%}">Inicio
+                        <a class="nav-link" href="{% url 'indexUser' %}">Inicio
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
@@ -56,6 +56,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{% url 'misreservas' user=id %}">Mis Reservas</a>
+                            <a class="dropdown-item" href="{% url 'micuenta' user=id %}">Mi Cuenta</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'login' %}">Salir</a>
                         </div>
