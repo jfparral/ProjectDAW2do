@@ -65,11 +65,11 @@ class book_list(APIView):
 class reservar_id(APIView):
     def get(self, request,id):
         reserva = Reserva.objects.all()
-        libros=[]
+        reservas=[]
         for reser in reserva:
             if str(reser.id_usuario.get().id)==str(id):
-                libros.append(reser.id_libro.get())
-        return JsonResponse({'libros':libros}, safe = False)
+                reservas.append(reser)
+        return JsonResponse({'reservas':reservas}, safe = False)
 
 class user_login(APIView):
     def get(self, request):

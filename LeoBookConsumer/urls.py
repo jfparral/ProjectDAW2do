@@ -24,4 +24,5 @@ urlpatterns = [
     path('reservar/<int:id>',views.reservar,name='reservar'),
     path('reservar/<int:id_user>/<int:id_book>',views.reservarUser,name='reservarUser'),
     path('comprar/<int:id_user>/<int:id_book>',views.comprarUser,name='comprarUser'),
+    path('misreservas/<int:user>',views.misreservas,name='misreservas'),
 ]

@@ -275,3 +275,13 @@ def reservarUser(request,id_book,id_user):
             'reservas' : reservas
         }
         return render(request,'LeoBook/userReservas.html',context)
+
+def misreservas(request, user):
+    greserva = requests.get('http://127.0.0.1:8000/reservar/'+str(user)+"/")
+    reservas = greserva.json()
+    context = {
+        'nombre' : request.session['user_name'],
+        'id': request.session['user_id'],
+        'reservas' : reservas
+    }
+    return render(request,'LeoBook/userReservas.html',context)
