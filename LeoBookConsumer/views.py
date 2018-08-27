@@ -317,7 +317,10 @@ def micuenta(request,user):
     }
     return render(request,'LeoBook/updateUser.html',context)
 
+def actualizarCuenta(request,id):
+    guser = requests.post('http://127.0.0.1:8000/user_delete/'+str(id)+"/", data = {'nombre' : request.POST['nombre'], 'correo' : request.POST['correo'],'password' : request.POST["password"],'id_libro_fav' : request.POST["id_libro_fav"],'id_autor_fav' : request.POST["id_autor_fav"]} )
+    return redirect('http://127.0.0.1:7000/micuenta/'+str(id))
 
 def eliminarCuenta(request,id):
     guser = requests.get('http://127.0.0.1:8000/user_delete/'+str(id)+"/")
-    return redirect('http://127.0.0.1:7000/')
+    return redirect('http://127.0.0.1:7000')
