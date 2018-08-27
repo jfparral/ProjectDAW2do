@@ -10,27 +10,17 @@ stdlogger = logging.getLogger(__name__)
 
 @receiver(post_save, sender='LeoBookAPI.Libro')
 def run_before_saving(sender, **kwargs):
-    print("Start pre_save Item in signals.py under items app")
-    print("sender %s" % (sender))
-    print("kwargs %s" % str(kwargs))
     var=str(kwargs.get('instance'))
     libro=Libro.objects.get(nombre=var)
     print(libro.stock)
     if libro.stock>0:
         reserva=Reserva.objects.all()
-        print("Mas de 0")
         for reserv in reserva:
-            #print("Reservas",reserv)
-            #print("Libro",libro.id)
-            #print("Reserva",reserv.id_libro.get().id)
-            #print(reserv.cantidad)
-            if libro.id==reserv.id_libro.get().id:
-                print("id igual")
+            if libro.id==reserv.id_libro.get().id and reserv.estado==True:
                 usuario=Usuario.objects.get(id=reserv.id_usuario.get().id)
                 mail=str(usuario.correo)
-                print(mail)
                 send_mail(
-                    'Libro disponivle',
+                    'Libro disponible',
                     'Su libro '+libro.nombre+' se encuentra en stock',
                     settings.EMAIL_HOST_USER,
                     [mail],
@@ -38,14 +28,3 @@ def run_before_saving(sender, **kwargs):
                 )
                 reserv.estado=False
                 reserv.save()
-                serializer = ReservaSerializer(reserv)
-                print(serializer.is_valid())
-                if serializer.is_valid():
-                    serializer.save()
-                    print("Posi")
-
-    """
-    stdlogger.info("Start pre_save Item in signals.py under items app")
-    stdlogger.info("sender %s" % (sender))
-    stdlogger.info("kwargs %s" % str(kwargs))
-    """
