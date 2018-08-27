@@ -108,6 +108,25 @@ class descripcion_venta_list(APIView):
         serializer = DescripcionVentasSerializer(descripcion,many=True)
         return JsonResponse(serializer.data, safe = False)
 
+class eliminar_reserva(APIView):
+    def post(self, request,id):
+        try:
+            reserva=Reserva.objects.get(id=id)
+        except:
+            return JsonResponse({'validacion':False},status=400)
+        reserva.delete()
+        return JsonResponse({'validacion':True},status=200)
+
+class actualizar_reserva(APIView):
+    def post(self, request, id):
+        try:
+            reserva=Reserva.objects.get(id=id)
+        except:
+            return JsonResponse({'validacion':False},status=400)
+        reserva.cantidad=request.POST['cantidad']
+        reserva.save()
+        return JsonResponse({'validacion': True}, status=200)
+
 class book_sell(APIView):
     def post(self, request, user,book):
         usuario=get_object_or_404(Usuario, id=user)
@@ -162,11 +181,7 @@ class user_update(APIView):
         usuario.id_libro_fav=request.POST['id_libro_fav']
         usuario.id_autor_fav=request.POST['id_autor_fav']
         usuario.save()
-        serializer = UsuarioSerializer(usuario)
-        if not serializer.is_valid():
-            return HttpResponse(status=404)
-        serializer.save()
-        return JsonResponse(serializer.data)
+        return JsonResponse({'validacion': True}, status=200)
 
 class user_delete(APIView):
     def post(self, request, user):
