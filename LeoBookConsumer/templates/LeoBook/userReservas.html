@@ -36,7 +36,7 @@
                         </div>
 
                         <!-- Modal body -->
-                        <form method="POST" action="{% url 'editarReserva' user=reserva.id_usuario id=reserva.libro.id %}">
+                        <form method="POST" action="{% url 'editarReserva' user=reserva.id_usuario id=key %}">
                         {% csrf_token %}
                             <div class="modal-body">
                                 <div class="form-group">
@@ -78,7 +78,7 @@
                         </div>
 
                         <!-- Modal body -->
-                        <form method="POST" action="{% url 'editarReserva' user=reserva.id_usuario id=reserva.libro.id %}">
+                        <form method="POST" action="{% url 'eliminarReserva' user=reserva.id_usuario id=key %}">
                             {% csrf_token %}
                             <div class="modal-body">
                                 <div class="form-group">

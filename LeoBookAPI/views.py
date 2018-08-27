@@ -1,12 +1,3 @@
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
-from .serializers import *
-from .models import *
-import random as rd
-#Mias
 from django.shortcuts import render,redirect
 from django.shortcuts import get_object_or_404
 from rest_framework.renderers import TemplateHTMLRenderer
@@ -17,6 +8,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView 
 from django.http import Http404,JsonResponse,HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from .serializers import *
+from .models import *
+import random as rd
 # Create your views here.
 def index(request):
     lib=Libro.objects.all()
@@ -109,7 +103,7 @@ class descripcion_venta_list(APIView):
         return JsonResponse(serializer.data, safe = False)
 
 class eliminar_reserva(APIView):
-    def post(self, request,id):
+    def get(self, request,id):
         try:
             reserva=Reserva.objects.get(id=id)
         except:

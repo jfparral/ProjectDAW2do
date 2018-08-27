@@ -26,4 +26,5 @@ urlpatterns = [
     path('comprar/<int:id_user>/<int:id_book>',views.comprarUser,name='comprarUser'),
     path('misreservas/<int:user>',views.misreservas,name='misreservas'),
     path('editarReserva/<int:user>/<int:id>',views.editarReserva,name='editarReserva'),
+    path('eliminarReserva/<int:user>/<int:id>',views.eliminarReserva,name='eliminarReserva'),
 ]

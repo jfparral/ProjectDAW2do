@@ -264,17 +264,9 @@ def comprarUser(request,id_book,id_user):
 @csrf_exempt 
 def reservarUser(request,id_book,id_user):
     if request.method == "POST":
-        id_book = id_book
-        id_book = id_user
+        print("id_book: "+str(id_book))
         sreserva = requests.post('http://127.0.0.1:8000/user_reserve/'+str(id_user)+"/"+str(id_book)+"/", data={'cantidad' : request.POST['cantidad']})
-        greserva = requests.get('http://127.0.0.1:8000/reservar/'+str(id_user)+"/")
-        reservas = greserva.json()
-        context = {
-            'nombre' : request.session['user_name'],
-            'id': request.session['user_id'],
-            'reservas' : reservas
-        }
-        return render(request,'LeoBook/userReservas.html',context)
+        return redirect('http://127.0.0.1:7000/misreservas/'+str(id_user))
 
 def misreservas(request, user):
     greserva = requests.get('http://127.0.0.1:8000/reservar/'+str(user)+"/")
@@ -304,3 +296,7 @@ def editarReserva(request,user,id):
     print('entro')
     return redirect('http://127.0.0.1:7000/misreservas/'+str(user))
     
+def eliminarReserva(request,user,id):
+    greserva = requests.get('http://127.0.0.1:8000/delete_reserve/'+str(id)+"/")
+    print('entro')
+    return redirect('http://127.0.0.1:7000/misreservas/'+str(user))
