@@ -204,13 +204,10 @@ def anothercsv(request):
     return render(request,'LeoBook/myAnothercsv.csv')
 def chart(request):
     booklist = requests.get('http://127.0.0.1:8000/book/')
-    authorlist = requests.get('http://127.0.0.1:8000/author/')
-    catlist=requests.get('http://127.0.0.1:8000/category/')
     books = booklist.json()
-    authors = authorlist.json()
     reglist = requests.get('http://127.0.0.1:8000/register/')
-    salelist = requests.get('http://127.0.0.1:8000/description_sale/')
     reg = reglist.json()
+    salelist = requests.get('http://127.0.0.1:8000/description_sale/')
     sale = salelist.json()   
     return render(request, 'LeoBook/chart.html',{'Libros':books,'Registro':reg,'Descripcion':sale})
 
@@ -319,6 +316,30 @@ def misreservas(request, user):
     }
     return render(request,'LeoBook/userReservas.html',context)
 
+def comprasUser(request, user):
+    reglist = requests.get('http://127.0.0.1:8000/register_id/'+str(user)+"/")
+    reg = reglist.json()
+    compras={}
+    for reserv in reg:
+        compras[reserv['id']]={}
+        salelist = requests.get('http://127.0.0.1:8000/description_sale_id/'+str(reserv['id_descripcion_venta'][0])+"/")
+        sale = salelist.json() 
+        compras[reserv['id']]['cantidad']=sale['cantidad']
+        gbook = requests.get('http://127.0.0.1:8000/book_id/'+str(sale['id_libro'][0])+"/")
+        book = gbook.json()
+        compras[reserv['id']]['libro']=book
+        compras[reserv['id']]['image']=book['image']
+        compras[reserv['id']]['precio']=reserv['total']
+        compras[reserv['id']]['id_usuario']=reserv['id_usuario'][0]
+
+    print(compras)
+    context = {
+        'nombre' : request.session['user_name'],
+        'id': request.session['user_id'],
+        'compras' : compras
+    }
+    return render(request,'LeoBook/comprasUser.html',context)
+
 def editarReserva(request,user,id):
     greserva = requests.post('http://127.0.0.1:8000/actualize_reserve/'+str(id)+"/", data={'cantidad':request.POST['cantidad']})
     print('entro')
@@ -347,6 +368,7 @@ def micuenta(request,user):
 
 def actualizarCuenta(request,id):
     guser = requests.post('http://127.0.0.1:8000/user_update/'+str(id)+"/", data = {'nombre' : request.POST['nombre'], 'correo' : request.POST['correo'],'password' : request.POST["password"],'id_libro_fav' : request.POST["id_libro_fav"],'id_autor_fav' : request.POST["id_autor_fav"]} )
+    request.session['user_name']=request.POST['nombre']
     return redirect('http://127.0.0.1:7000/micuenta/'+str(id))
 
 def eliminarCuenta(request,id):

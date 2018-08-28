@@ -1,0 +1,62 @@
+{% extends 'LeoBook/baseUser.html' %} {% load staticfiles %} {%block content%}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Mis Compras</h1>
+        </div>
+    </div>
+
+    <div class="row py-1 text-center">
+        {%for key,compra in compras.items %}
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 caja par1">
+            <img src="/{{compra.image}}" class="img-fluid libro">
+            <label for="text">{{compra.libro.nombre}}</label>
+            <label for="text">Precio: ${{compra.precio}}</label>
+            <button type="button" class="text-white rounded enlaces" data-toggle="modal" data-target="#myEditar{{forloop.counter0}}">
+                Ver
+            </button>
+            <!-- The Modal Comprar -->
+            <div class="modal fade" id="myEditar{{forloop.counter0}}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Detalles de Compra de {{compra.libro.nombre}}</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        
+                        {% csrf_token %}
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="text">Disponibles: </label>
+                                    <label for="text">{{compra.libro.stock}}</label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="text">Precio Unitario: </label>
+                                    <label for="text">${{compra.libro.precio}}</label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="text">Precio Total: </label>
+                                    <label for="text">${{compra.precio}}</label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="text">Cantidad:</label>
+                                    <label for="text">{{compra.cantidad}}</label>
+                                </div>
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-metal" data-dismiss="modal">Cerrar</button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+</div>
+{%endblock%}

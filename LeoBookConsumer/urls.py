@@ -29,6 +29,7 @@ urlpatterns = [
     path('editarReserva/<int:user>/<int:id>',views.editarReserva,name='editarReserva'),
     path('eliminarReserva/<int:user>/<int:id>',views.eliminarReserva,name='eliminarReserva'),
     path('micuenta/<int:user>',views.micuenta,name='micuenta'),
+    path('comprasUser/<int:user>',views.comprasUser,name='comprasUser'),
     path('eliminarCuenta/<int:id>',views.eliminarCuenta,name='eliminarCuenta'),
     path('actualizarCuenta/<int:id>',views.actualizarCuenta,name='actualizarCuenta'),
 ]

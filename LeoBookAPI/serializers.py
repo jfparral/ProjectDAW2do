@@ -35,7 +35,7 @@ class DescripcionVentasSerializer(serializers.ModelSerializer):
 class RegistroVentasSerializer(serializers.ModelSerializer):
     class Meta:
         model = Registro_Ventas
-        fields=('id','total','id_usuario','id_descripcion')
+        fields=('id','total','id_usuario','id_descripcion_venta')
 
 class BlogSerializer(serializers.ModelSerializer):
     class Meta:

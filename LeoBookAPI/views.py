@@ -90,10 +90,22 @@ class user_id(APIView):
         serializer = UsuarioSerializer(usuario,many=False)
         return JsonResponse(serializer.data,safe = False)
 
+class registro_id(APIView):
+    def get(self, request,id):
+        registro = Registro_Ventas.objects.filter(id_usuario=id)
+        serializer = RegistroVentasSerializer(registro,many=True)
+        return JsonResponse(serializer.data, safe = False)
+
 class registro_list(APIView):
     def get(self, request):
         registro = Registro_Ventas.objects.all()
         serializer = RegistroVentasSerializer(registro,many=True)
+        return JsonResponse(serializer.data, safe = False)
+
+class descripcion_venta_id(APIView):
+    def get(self, request,id):
+        descripcion = Descripcion_Venta.objects.get(id=id)
+        serializer = DescripcionVentasSerializer(descripcion,many=False)
         return JsonResponse(serializer.data, safe = False)
 
 class descripcion_venta_list(APIView):
@@ -133,7 +145,7 @@ class book_sell(APIView):
         if descripcion.is_valid():
             descripcion.save()
             #Aqui puedde haber error con el len venta
-            datos2={'total':int(request.POST['cantidad'])*libro.precio,'id_usuario':[str(usuario.id)],'id_descripcion_venta':[descripcion.id]}
+            datos2={'total':int(request.POST['cantidad'])*int(libro.precio),'id_usuario':[str(usuario.id)],'id_descripcion_venta':[descripcion.id]}
             serializer2=RegistroVentasSerializer(data=datos2)
             if serializer2.is_valid():
                 serializer2.save()

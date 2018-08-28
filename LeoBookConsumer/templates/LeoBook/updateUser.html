@@ -24,7 +24,7 @@
         <div class="form-group">
             <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Libro Favorito</label>
             <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="id_libro_fav" required>
-                <option>Seleccione un libro</option>
+                <option value="nada">Seleccione un libro</option>
                 {%for book in books%}
                     {%if book.id not in user.id_libro_fav %}
                         <option value="{{book.id}}">{{book.nombre}}</option>
