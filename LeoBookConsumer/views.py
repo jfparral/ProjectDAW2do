@@ -284,7 +284,7 @@ def comprarUser(request,id_book,id_user):
             'nombre' : request.session['user_name'],
             'id': request.session['user_id'],
         }
-        return render(request,'LeoBook/userCompras.html',context)
+        return redirect('http://127.0.0.1:7000/comprasUser/'+str(id_user))
 
 @csrf_exempt 
 def reservarUser(request,id_book,id_user):

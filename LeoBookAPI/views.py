@@ -142,10 +142,12 @@ class book_sell(APIView):
         libro=get_object_or_404(Libro,id=book)
         datos={'cantidad':request.POST['cantidad'],'id_libro':[str(book)]}
         descripcion = DescripcionVentasSerializer(data=datos)
+        
         if descripcion.is_valid():
             descripcion.save()
-            #Aqui puedde haber error con el len venta
-            datos2={'total':int(request.POST['cantidad'])*int(libro.precio),'id_usuario':[str(usuario.id)],'id_descripcion_venta':[descripcion.id]}
+            print(descripcion)
+            descrp = Descripcion_Venta.objects.latest('id')
+            datos2={'total':int(request.POST['cantidad'])*int(libro.precio),'id_usuario':[str(usuario.id)],'id_descripcion_venta':[descrp.id]}
             serializer2=RegistroVentasSerializer(data=datos2)
             if serializer2.is_valid():
                 serializer2.save()
