@@ -239,6 +239,37 @@ def unete(request):
     f.close() 
     return render(request, 'LeoBook/unete.html')
 
+def uneteUser(request):
+    booklist = requests.get('http://127.0.0.1:8000/book/')
+    books = booklist.json()
+    catlist=requests.get('http://127.0.0.1:8000/category/')
+    categor=catlist.json()
+    dirname = os.path.dirname(__file__)
+    filename = os.path.join(dirname, 'static\\js\\myAnothercsv.csv')
+    dicc={}
+    count=0
+    for elem in books:
+        for cat in elem['id_categoria']:
+            for a in categor:
+                if a['id']==cat:
+                    name_cat=a['nombre']
+                    if name_cat not in dicc:
+                        dicc[name_cat]=1
+                    else:
+                        dicc[name_cat]=dicc[name_cat]+1
+                    count=count+1
+    print(dicc)
+    f=open(filename,"w",encoding="utf-8")
+    f.write("axis,value\n")
+    for v in dicc:
+        f.write(str(v)+","+str(dicc[v]/count)+"\n")
+    f.close()
+    context = {
+            'nombre' : request.session['user_name'],
+            'id': request.session['user_id'],
+        }
+    return render(request, 'LeoBook/uneteUser.html',context)
+
 
 def nosotros(request):
     return render(request, 'LeoBook/nosotros.html')
