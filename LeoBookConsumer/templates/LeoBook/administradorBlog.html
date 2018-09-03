@@ -1,0 +1,138 @@
+{% extends 'LeoBook/baseAdministrador.html' %} {% load staticfiles %}
+
+{% block arriba %}
+    <script>
+        $.when($.ready).then(function () {
+            var id,title,content,autor;
+            $('#editar').attr("disabled", true);
+            $('#eliminar').attr("disabled", true);
+            function carga() {
+
+                $.get("{% url 'obtener_blog' %}",
+                    function (data) {
+                        $.each(data, function (key, val) {
+                            for (datos in val) {
+                                id = "elemento" + val[datos].id;
+                                title = val[datos].titulo;
+                                content = val[datos].contenido;
+                                autor = val[datos].autor;
+                                $("#cuerpo_tabla").append("<tr class='table-primary' id='" + id + "'>" +
+                                    "<td>" + val[datos].id + "</td>" +
+                                    "<td id='titulo" + id + "'>" + title + "</td>" +
+                                    "<td id='autor" + id + "'>" + autor + "</td>" +
+                                    "<td id='contenido" + id + "'>" + content + "</td>" +
+                                    "</tr>");
+                                $("#elemento" + val[datos].id + "").click(function () {
+                                    var titulo = $("#titulo" + this.id + "").text();
+                                    var contenido = $("#contenido" + this.id + "").text();
+                                    var autor = $("#autor" + this.id + "").text();
+                                    $("#contenido").val(contenido);
+                                    $("#autor").val(autor);
+                                    $("#titulo").val(titulo);
+                                    $('#boton').attr("disabled", true);
+                                    $('#editar').attr("disabled", false);
+                                    $('#eliminar').attr("disabled", false);
+                                });
+                            }
+                        });
+
+                    });
+            }
+            carga();
+            var title_create, content_create, author_create, date_create;
+            $("#formsearch").submit( function (e) {
+                title_create=$("#titulo").val();
+                content_create=$('#contenido').val();
+                author_create=$('#autor').val();
+                var date_tmp=new Date();
+                date_create= date_tmp.getFullYear()+"-"+(date_tmp.getMonth()+1)+"-"+date_tmp.getDate();
+                console.log(date_create);
+                e.preventDefault();
+                $.post("{% url 'crear_blog' %}", {
+                    titulo: title_create,
+                    contenido: content_create,
+                    autor: author_create,
+                    fecha: date_create
+                }, function (data) {
+                    if(data.validacion==="true") {
+                        var id=$("#tablita tr").length;
+                        $("#cuerpo_tabla").append("<tr class='table-primary' id='" + id + "'>" +
+                            "<td>" + id + "</td>" +
+                            "<td id='titulo" + id + "'>" + title_create + "</td>" +
+                            "<td id='autor" + id + "'>" + author_create + "</td>" +
+                            "<td id='contenido" + id + "'>" + content_create + "</td>" +
+                            "</tr>");
+                        $("#elemento" + id + "").click(function () {
+                            var titulo = $("#titulo" + this.id + "").text();
+                            var contenido = $("#contenido" + this.id + "").text();
+                            var autor = $("#autor" + this.id + "").text();
+                            $("#contenido").val(contenido);
+                            $("#autor").val(autor);
+                            $("#titulo").val(titulo);
+                            console.log($("#tablita tr").length - 1);
+                        });
+                        $('#titulo').val("");
+                        $('#contenido').val("");
+                        $('#autor').val("");
+                        alert("Blog creado");
+                    }else {
+                        alert("Error");
+                    }
+                });
+
+            });
+            $("#editar").click(function () {
+
+            })
+        });
+
+    </script>
+
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table table-hover" id="tablita">
+                    <thead>
+                    <tr class="table-success">
+                        <th>Id</th>
+                        <th>Titulo</th>
+                        <th>Autor</th>
+                        <th>Contenido</th>
+                    </tr>
+                    </thead>
+                    <tbody id="cuerpo_tabla">
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col" id="modificacion">
+                <div class="modal-body">
+                    <form id="formsearch">
+                        <div class="form-group">
+                            <label for="text">Titulo:</label>
+                            <input type="text" class="form-control" id="titulo">
+                        </div>
+                        <div class="form-group">
+                            <label for="text">Contenido:</label>
+                            <textarea type="text" class="form-control" id="contenido"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="text">Autor:</label>
+                            <input type="text" class="form-control" id="autor">
+                        </div>
+                        <button type="submit" id="boton">Crear</button>
+                        <button id="editar">Editar</button>
+                        <button id="eliminar">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+

@@ -33,4 +33,8 @@ urlpatterns = [
     path('comprasUser/<int:user>',views.comprasUser,name='comprasUser'),
     path('eliminarCuenta/<int:id>',views.eliminarCuenta,name='eliminarCuenta'),
     path('actualizarCuenta/<int:id>',views.actualizarCuenta,name='actualizarCuenta'),
+    path('login_admin',views.logearAdmin,name='login_admin'),
+    path('blog_admin',views.bloger,name='blog_admin'),
+    path('crear_blog',views.crear_blog,name='crear_blog'),
+    path('obtener_blog',views.obtener_blogs,name='obtener_blog'),
 ]

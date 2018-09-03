@@ -51,3 +51,8 @@ class SuscripcionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Suscripcion
         fields=('id','email')
+
+class AdministradorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Administrador
+        fields=('id','usuario','contrasena')

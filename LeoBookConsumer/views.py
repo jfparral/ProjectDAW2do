@@ -4,6 +4,7 @@ from django.conf import settings
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 import json
+from django.http import Http404,JsonResponse,HttpResponse
 import requests
 from django.core.mail import send_mail
 from ProjectDAW2do import settings
@@ -165,6 +166,7 @@ def sendRegister(request):
 def blog(request):
     blog_list = requests.get('http://127.0.0.1:8000/blog/')
     blogs = blog_list.json()
+    print(blogs)
     context = {
         'blogs' : blogs
     }
@@ -405,3 +407,64 @@ def actualizarCuenta(request,id):
 def eliminarCuenta(request,id):
     guser = requests.get('http://127.0.0.1:8000/user_delete/'+str(id)+"/")
     return redirect('http://127.0.0.1:7000')
+
+@csrf_exempt
+def logearAdmin(request):
+    if request.method=="GET":
+        print("Get")
+        return render(request,'LeoBook/loginAdministrador.html',{})
+    if request.method=="POST":
+        print("Post")
+        print(request.POST)
+        print(request.POST['usuario'])
+        print(request.POST['contrasena'])
+        respuesta=requests.get('http://127.0.0.1:8000/admin_login/',
+                                     data={'usuario': request.POST['usuario'], 'contrasena': request.POST["contrasena"]})
+        admin=respuesta.json()
+        print(admin)
+        if respuesta.status_code==400:
+            return redirect('login_admin')
+        else:
+            request.session['user_name'] = request.POST['usuario']
+            response=render(request,'LeoBook/indexAdministrador.html',{})
+            return response
+
+@csrf_exempt
+def bloger(request):
+    if request.method == "GET":
+        return render(request, 'LeoBook/administradorBlog.html', {})
+
+def obtener_blogs(request):
+    if request.method=="GET":
+        blog_list = requests.get('http://127.0.0.1:8000/blog/')
+        blogs = blog_list.json()
+        context = {
+            'blogs': blogs
+        }
+        if blog_list.status_code==200:
+            return JsonResponse(context,status=200)
+        else:
+            return JsonResponse({}, status=400)
+
+@csrf_exempt
+def crear_blog(request):
+    if request.method == "GET":
+        return render(request, 'LeoBook/crearBlog.html', {})
+    if request.method == 'POST':
+        respuesta = requests.post('http://127.0.0.1:8000/create/',
+                                 data={'titulo': request.POST['titulo'], 'contenido': request.POST['contenido'],
+                                       'autor': request.POST['autor'],'fecha':request.POST['fecha']})
+        if respuesta.status_code==400:
+            return JsonResponse({'validacion':'false'}, status=400)
+        else:
+            return JsonResponse({'validacion':'true'}, status=201)
+
+def modificar_blog(request):
+    if request.method=='UPDATE':
+        respuesta = requests. update('http://127.0.0.1:8000/upd_delete_blog/',
+                                  data={'titulo': request.POST['titulo'], 'contenido': request.POST['contenido'],
+                                        'autor': request.POST['autor'], 'fecha': request.POST['fecha']})
+        if respuesta.status_code == 400:
+            return JsonResponse({'validacion': 'false'}, status=400)
+        else:
+            return JsonResponse({'validacion': 'true'}, status=201)

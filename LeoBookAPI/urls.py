@@ -26,4 +26,7 @@ urlpatterns = [
     url(r'^blog_id/(?P<blog_id>[0-9]+)/$', views.blog_id.as_view()),
     url(r'^events/$', views.event_list.as_view()),
     url(r'^event_id/(?P<event_id>[0-9]+)/$', views.event_id.as_view()),
+    url(r'^admin_login/$',views.validar_login.as_view()),
+    url(r'^create/$',views.blog_create.as_view()),
+    url(r'^upd_delete_blog/$',views.up_del_blog.as_view()),
 ]

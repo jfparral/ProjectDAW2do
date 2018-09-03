@@ -11,6 +11,8 @@ from django.views.decorators.csrf import csrf_exempt
 from .serializers import *
 from .models import *
 import random as rd
+import time
+from datetime import datetime
 # Create your views here.
 def index(request):
     lib=Libro.objects.all()
@@ -209,6 +211,7 @@ class user_delete(APIView):
 class blog_list(APIView):
     @csrf_exempt
     def get(self, request):
+        print("Entro al blog")
         blogs = Contenido_Blog.objects.all()
         serializer = BlogSerializer(blogs,many=True)
         return JsonResponse(serializer.data, safe = False)
@@ -232,7 +235,51 @@ class event_id(APIView):
         serializer = EventoSerializer(evento)
         return JsonResponse(serializer.data, safe = False)
 
+class validar_login(APIView):
+    def get(self,request):
+        try:
+            print(request.POST)
+            print(request.POST['usuario'])
+            admin=Administrador.objects.get(usuario=request.POST['usuario'])
+        except:
+            return JsonResponse({'validacion':False},status=400)
+        print("Hola fueraa")
+        if(admin.contrasena==request.POST['contrasena']):
+            return JsonResponse({'validacion':True},status=200)
 
+
+class blog_create(APIView):
+    def post(self, request):
+        print("Hola")
+        print(request.POST['fecha'])
+        print()
+        temp_date = datetime.strptime(request.POST['fecha'], "%Y-%m-%d").date()
+        datos = {'titulo': request.POST['titulo'], 'contenido': request.POST['contenido'],
+                 'autor': request.POST['autor']
+            , 'fecha': temp_date}
+        serializer = BlogSerializer(data=datos)
+        print(serializer.is_valid())
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+
+class up_del_blog(APIView):
+    def update(self,request,blog):
+        blog = get_object_or_404(Contenido_Blog, id=blog)
+        blog.titulo = request.POST['titulo']
+        blog.contenido = request.POST['contenido']
+        blog.autor = request.POST['autor']
+        blog.fecha= request.POST['fecha']
+        blog.save()
+        return JsonResponse({'validacion': True}, status=200)
+    def delete(self, request,blog):
+        try:
+            blog=Contenido_Blog.objects.get(id=blog)
+        except:
+            return JsonResponse({'validacion':False},status=400)
+        blog.delete()
+        return JsonResponse({'validacion':True},status=200)
 
 def chart(request):
     return render(request,'LeoBook/chart.html',{'Libros':Libro.objects.all(),'Registro':Registro_Ventas.objects.all(),'Descripcion':Descripcion_Venta.objects.all(),'Usuario':Usuario.objects.all()})

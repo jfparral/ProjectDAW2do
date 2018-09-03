@@ -75,3 +75,9 @@ class Suscripcion(models.Model):
     email=models.EmailField()
     def __str__(self):
         return self.email
+
+class Administrador(models.Model):
+    usuario=models.CharField(max_length=50,blank=True,null=False)
+    contrasena=models.CharField(max_length=50,blank=True,null=False)
+    def __str__(self):
+        return self.usuario
