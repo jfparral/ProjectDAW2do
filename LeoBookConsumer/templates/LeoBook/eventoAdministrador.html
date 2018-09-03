@@ -9,26 +9,22 @@
             $('#eliminar').attr("disabled", true);
             function carga() {
 
-                $.get("{% url 'obtener_blog' %}",
+                $.get("{% url 'obtener_eventos' %}",
                     function (data) {
                         $.each(data, function (key, val) {
                             for (datos in val) {
                                 id = "elemento" + val[datos].id;
                                 title = val[datos].titulo;
                                 content = val[datos].contenido;
-                                autor = val[datos].autor;
                                 $("#cuerpo_tabla").append("<tr class='table-primary' id='" + id + "'>" +
                                     "<td>" + val[datos].id + "</td>" +
                                     "<td id='titulo" + id + "'>" + title + "</td>" +
-                                    "<td id='autor" + id + "'>" + autor + "</td>" +
                                     "<td id='contenido" + id + "'>" + content + "</td>" +
                                     "</tr>");
                                 $("#elemento" + val[datos].id + "").click(function () {
                                     var titulo = $("#titulo" + this.id + "").text();
                                     var contenido = $("#contenido" + this.id + "").text();
-                                    var autor = $("#autor" + this.id + "").text();
                                     $("#contenido").val(contenido);
-                                    $("#autor").val(autor);
                                     $("#titulo").val(titulo);
                                     elemento_id=this.id.substr(8);
                                     $('#boton').attr("disabled", true);
@@ -46,15 +42,13 @@
             $("#formsearch").submit( function (e) {
                 title_create=$("#titulo").val();
                 content_create=$('#contenido').val();
-                author_create=$('#autor').val();
                 var date_tmp=new Date();
                 date_create= date_tmp.getFullYear()+"-"+(date_tmp.getMonth()+1)+"-"+date_tmp.getDate();
                 console.log(date_create);
                 e.preventDefault();
-                $.post("{% url 'crear_blog' %}", {
+                $.post("{% url 'crear_eventos' %}", {
                     titulo: title_create,
                     contenido: content_create,
-                    autor: author_create,
                     fecha: date_create
                 }, function (data) {
                     if(data.validacion==="true") {
@@ -62,21 +56,17 @@
                         $("#cuerpo_tabla").append("<tr class='table-primary' id='" + id + "'>" +
                             "<td>" + id + "</td>" +
                             "<td id='titulo" + id + "'>" + title_create + "</td>" +
-                            "<td id='autor" + id + "'>" + author_create + "</td>" +
                             "<td id='contenido" + id + "'>" + content_create + "</td>" +
                             "</tr>");
                         $("#elemento" + id + "").click(function () {
                             var titulo = $("#titulo" + this.id + "").text();
                             var contenido = $("#contenido" + this.id + "").text();
-                            var autor = $("#autor" + this.id + "").text();
                             $("#contenido").val(contenido);
-                            $("#autor").val(autor);
                             $("#titulo").val(titulo);
                             console.log($("#tablita tr").length - 1);
                         });
                         $('#titulo').val("");
                         $('#contenido').val("");
-                        $('#autor').val("");
                         alert("Blog creado");
                     }else {
                         alert("Error");
@@ -86,13 +76,12 @@
             });
 
             $("#eliminar").click(function () {
-                $.post("{% url 'modificar_blog' %}", {
+                $.post("{% url 'eliminar_event' %}", {
                     id: elemento_id
                 }, function (data) {
                     console.log($('#elemento' + elemento_id + '').val());
                     $('#titulo').val("");
                     $('#contenido').val("");
-                    $('#autor').val("");
                     $('#elemento' + elemento_id + '').remove();
                     $('#boton').attr("disabled", false);
                     $('#editar').attr("disabled", true);
@@ -102,24 +91,20 @@
             $('#editar').click(function () {
                 title_create=$("#titulo").val();
                 content_create=$('#contenido').val();
-                author_create=$('#autor').val();
                 var date_tmp=new Date();
                 date_create= date_tmp.getFullYear()+"-"+(date_tmp.getMonth()+1)+"-"+date_tmp.getDate();
                 console.log(date_create);
-                $.post("{% url 'editar_blog' %}", {
+                $.post("{% url 'editar_events' %}", {
                     id: elemento_id,
                     titulo: title_create,
                     contenido: content_create,
-                    autor: author_create,
                     fecha: date_create
                 }, function (data) {
                     if (data.validacion === "true") {
                         $('#tituloelemento' + elemento_id + '').text($('#titulo').val());
                         $('#contenidoelemento' + elemento_id + '').text($('#contenido').val());
-                        $('#autorelemento' + elemento_id + '').text($('#autor').val());
                         $('#titulo').val("");
                         $('#contenido').val("");
-                        $('#autor').val("");
                         //alert("Blog creado");
                     } else {
                         alert("Error");
@@ -140,7 +125,6 @@
                     <tr class="table-success">
                         <th>Id</th>
                         <th>Titulo</th>
-                        <th>Autor</th>
                         <th>Contenido</th>
                     </tr>
                     </thead>
@@ -160,10 +144,6 @@
                         <div class="form-group">
                             <label for="text">Contenido:</label>
                             <textarea type="text" class="form-control" id="contenido"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="text">Autor:</label>
-                            <input type="text" class="form-control" id="autor">
                         </div>
                         <button type="submit" id="boton">Crear</button>
                     </form>

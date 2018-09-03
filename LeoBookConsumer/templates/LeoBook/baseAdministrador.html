@@ -39,37 +39,11 @@
         <li class="nav-item">
             <a href="#" class="nav-link"> Reporte Ventas</a>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
-               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Blogs
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{% url 'blog_admin' %}">Crear blog</a>
-                <a class="dropdown-item" href="{% url 'crear_blog' %}">Actualizar blog</a>
-                <a class="dropdown-item" href="{% url 'register' %}">Eliminar blog</a>
-            </div>
+        <li class="nav-item">
+            <a href="{% url 'blog_admin' %}" class="nav-link"> Blogs</a>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
-               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Eventos
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Crear Evento</a>
-                <a class="dropdown-item" href="#">Actualizar Evento</a>
-                <a class="dropdown-item" href="#">Eliminar Evento</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
-               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Libros
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Actualizar stock</a>
-                <a class="dropdown-item" href="#">Agregar nuevo libro</a>
-            </div>
+        <li class="nav-item">
+            <a href="{% url 'events' %}" class="nav-link"> Eventos</a>
         </li>
     </ul>
 

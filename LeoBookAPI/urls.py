@@ -28,5 +28,8 @@ urlpatterns = [
     url(r'^event_id/(?P<event_id>[0-9]+)/$', views.event_id.as_view()),
     url(r'^admin_login/$',views.validar_login.as_view()),
     url(r'^create/$',views.blog_create.as_view()),
-    url(r'^upd_delete_blog/$',views.up_del_blog.as_view()),
+    url(r'^upd_delete_blog/(?P<blog>[0-9]+)/$',views.up_del_blog.as_view()),
+    url(r'^manage_events/$',views.manage_events.as_view()),
+    url(r'^upd_rem_evento/(?P<even>[0-9]+)/$',views.upd_rem_evento.as_view()),
+    url(r'^reportes/$',views.reportes.as_view()),
 ]

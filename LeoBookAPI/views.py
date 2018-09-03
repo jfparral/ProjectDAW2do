@@ -265,7 +265,7 @@ class blog_create(APIView):
         return JsonResponse(serializer.errors, status=400)
 
 class up_del_blog(APIView):
-    def update(self,request,blog):
+    def patch(self,request,blog):
         blog = get_object_or_404(Contenido_Blog, id=blog)
         blog.titulo = request.POST['titulo']
         blog.contenido = request.POST['contenido']
@@ -280,6 +280,54 @@ class up_del_blog(APIView):
             return JsonResponse({'validacion':False},status=400)
         blog.delete()
         return JsonResponse({'validacion':True},status=200)
+
+#Eventos
+class manage_events(APIView):
+    def get(self,request):
+        eventos=Contenido_Evento.objects.all()
+        serializer=EventoSerializer(eventos,many=True)
+        return JsonResponse(serializer.data, safe=False)
+    def post(self, request):
+        print("Hola")
+        print(request.POST['fecha'])
+        print()
+        temp_date = datetime.strptime(request.POST['fecha'], "%Y-%m-%d").date()
+        datos = {'titulo': request.POST['titulo'], 'contenido': request.POST['contenido']
+            , 'fecha': temp_date}
+        serializer = EventoSerializer(data=datos)
+        print(serializer.is_valid())
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+
+class upd_rem_evento(APIView):
+    def patch(self, request, even):
+        evento = get_object_or_404(Contenido_Evento, id=even)
+        evento.titulo = request.POST['titulo']
+        evento.contenido = request.POST['contenido']
+        evento.fecha = request.POST['fecha']
+        evento.save()
+        return JsonResponse({'validacion': True}, status=200)
+    def delete(self, request, even):
+        try:
+            evento = Contenido_Evento.objects.get(id=even)
+        except:
+            return JsonResponse({'validacion': False}, status=400)
+        evento.delete()
+        return JsonResponse({'validacion': True}, status=200)
+
+class reportes(APIView):
+    def post(self, request):
+        print("usuario,libro,cantidad,total")
+        if (request.POST['usuario'] == "" or request.POST['cantidad'] == "" or request.POST['libro'] == "" or
+                request.POST['total'] == ""):
+            return JsonResponse({'validacion': False}, status=400)
+        else:
+            reporte = Reportes(usuario=request.POST['usuario'], libro=request.POST['libro'],
+                               cantidad=request.POST['cantidad'], total=request.POST['total'])
+            reporte.save()
+            return JsonResponse({'validacion': True}, status=200)
 
 def chart(request):
     return render(request,'LeoBook/chart.html',{'Libros':Libro.objects.all(),'Registro':Registro_Ventas.objects.all(),'Descripcion':Descripcion_Venta.objects.all(),'Usuario':Usuario.objects.all()})

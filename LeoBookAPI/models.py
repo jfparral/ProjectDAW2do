@@ -1,5 +1,5 @@
 from django.db import models
-
+from djongo import models as djono_models
 # Create your models here.
 
 class Categoria(models.Model):
@@ -79,5 +79,14 @@ class Suscripcion(models.Model):
 class Administrador(models.Model):
     usuario=models.CharField(max_length=50,blank=True,null=False)
     contrasena=models.CharField(max_length=50,blank=True,null=False)
+    def __str__(self):
+        return self.usuario
+
+class Reportes(djono_models.Model):
+    usuario=djono_models.CharField(max_length = 100)
+    libro=djono_models.CharField(max_length=50)
+    cantidad=djono_models.IntegerField()
+    total=djono_models.FloatField()
+    objects = djono_models.DjongoManager()
     def __str__(self):
         return self.usuario
