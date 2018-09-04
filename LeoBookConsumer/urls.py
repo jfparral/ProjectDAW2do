@@ -39,11 +39,11 @@ urlpatterns = [
     path('obtener_blog',views.obtener_blogs,name='obtener_blog'),
     path('modificar_blog',views.modificar_blog,name='modificar_blog'),
     path('editar_blog',views.editar_blog,name='editar_blog'),
-    path('events',views.events,name='events'),
+    path('eventos',views.eventos,name='eventos'),
     path('obtener_eventos',views.obtener_eventos,name='obtener_eventos'),
     path('crear_eventos',views.crear_eventos,name='crear_eventos'),
     path('eliminar_event',views.eliminar_event,name='eliminar_event'),
     path('editar_events',views.editar_events,name='editar_events'),
-    path('cargar_reporte',views.crear_reporte,name='cargar_reportes'),
+    path('cargar_reporte',views.cargar_reportes,name='cargar_reportes'),
     path('crear_reporte',views.crear_reporte,name='crear_reporte'),
 ]

@@ -339,14 +339,15 @@ class reportes_usuarios(APIView):
 class reportes(APIView):
     def get(self, request):
         ventas = Registro_Ventas.objects.all()
-        datos = "{"
+        datos = {}
         for venta in ventas:
-            datos += "{'" + venta.id + "':" + "{" + "'usuario'" + ":" + venta.id_usuario.get().nombres + "," + \
-                     "'libro':" + venta.id_descripcion_venta.get().id_libro.get().nombre + "," + \
-                     "'cantidad':" + venta.id_descripcion_venta.get().cantidad + "," + "'total':" + venta.total + "}}"
-        datos += "}"
-        json_dat = json.loads(datos)
-        return JsonResponse(json_dat, status=200)
+            datos[venta.id]={}
+            datos[venta.id]['id']=venta.id
+            datos[venta.id]['usuario']=venta.id_usuario.get().nombres
+            datos[venta.id]['libro']=venta.id_descripcion_venta.get().id_libro.get().nombre
+            datos[venta.id]['cantidad']=venta.id_descripcion_venta.get().cantidad
+            datos[venta.id]['total']=venta.total
+        return JsonResponse(datos, status=200)
     def post(self, request):
         print("usuario,libro,cantidad,total")
         if (request.POST['usuario'] == "" or request.POST['cantidad'] == "" or request.POST['libro'] == "" or
@@ -355,7 +356,7 @@ class reportes(APIView):
         else:
             reporte = Reportes(usuario=request.POST['usuario'], libro=request.POST['libro'],
                                cantidad=request.POST['cantidad'], total=request.POST['total'])
-            reporte.save()
+            reporte.save(using='default')
             return JsonResponse({'validacion': True}, status=200)
 
 class chart_descripcion(APIView):

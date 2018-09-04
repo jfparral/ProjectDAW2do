@@ -532,7 +532,7 @@ def editar_blog(request):
 
 #Eventos
 @csrf_exempt
-def events(request):
+def eventos(request):
     if request.method == "GET":
         return render(request, 'LeoBook/eventoAdministrador.html', {})
 
@@ -586,7 +586,14 @@ def editar_events(request):
 @csrf_exempt
 def cargar_reportes(request):
     if request.method == "GET":
-        return render(request, 'LeoBook/reportesAdministrador.html', {})
+        reporte=requests.get('http://127.0.0.1:8000/reportes/')
+        report = reporte.json()
+        lis_rep=[]
+        for rep in report:
+            lis_rep.append(report[rep])
+        return render(request, 'LeoBook/reportesAdministrador.html',
+                      {'reportes': lis_rep})
+        #return render(request, 'LeoBook/reportesAdministrador.html', {})
 
 @csrf_exempt
 def crear_reporte(request):
