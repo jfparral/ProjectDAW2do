@@ -41,16 +41,17 @@ class Reserva(models.Model):
     def __str__(self):
         return str(self.id_libro.get().nombre)
 
-class Descripcion_Venta(models.Model):
-    cantidad=models.IntegerField()
-    id_libro=models.ManyToManyField(Libro)
+class Descripcion_Venta(djono_models.Model):
+    cantidad=djono_models.IntegerField()
+    libro=djono_models.CharField(max_length=50)
     def __str__(self):
         return str(self.cantidad)
 
-class Registro_Ventas(models.Model):
-    total=models.FloatField()
-    id_usuario=models.ManyToManyField(Usuario)
-    id_descripcion_venta=models.ManyToManyField(Descripcion_Venta)
+class Registro_Ventas(djono_models.Model):
+    total=djono_models.FloatField()
+    usuario=djono_models.CharField(max_length = 100)
+    cantidad=djono_models.IntegerField()
+    libro=djono_models.CharField(max_length=50)
     def __str__(self):
         return str(self.total)
 
