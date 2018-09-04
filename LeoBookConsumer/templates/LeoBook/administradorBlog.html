@@ -5,10 +5,10 @@
         $.when($.ready).then(function () {
             var id,title,content,autor;
             var elemento_id;
-            $('#editar').attr("disabled", true);
-            $('#eliminar').attr("disabled", true);
+            $('#boton').show();
+            $('#editar').hide();
+            $('#eliminar').hide();
             function carga() {
-
                 $.get("{% url 'obtener_blog' %}",
                     function (data) {
                         $.each(data, function (key, val) {
@@ -30,11 +30,12 @@
                                     $("#contenido").val(contenido);
                                     $("#autor").val(autor);
                                     $("#titulo").val(titulo);
-                                    elemento_id=this.id.substr(8);
-                                    $('#boton').attr("disabled", true);
-                                    $('#editar').attr("disabled", false);
-                                    $('#eliminar').attr("disabled", false);
-                                    console.log(elemento_id);
+                                    console.log(this.id);
+                                    elemento_id = this.id.substr(8);
+                                    $('#boton').hide();
+                                    $('#editar').show();
+                                    $('#eliminar').show();
+
                                 });
                             }
                         });
@@ -42,6 +43,7 @@
                     });
             }
             carga();
+            console.log("Hiola",elemento_id);
             var title_create, content_create, author_create, date_create;
             $("#formsearch").submit( function (e) {
                 title_create=$("#titulo").val();
@@ -58,26 +60,34 @@
                     fecha: date_create
                 }, function (data) {
                     if(data.validacion==="true") {
-                        var id=$("#tablita tr").length;
+                        console.log("Entro en true",elemento_id);
+                        console.log($("#cuerpo_tabla tr:last-child td:first").text());
+                        elemento_id=parseInt($("#cuerpo_tabla tr:last-child td:first").text())+1;
+                        var id="elemento"+elemento_id;
                         $("#cuerpo_tabla").append("<tr class='table-primary' id='" + id + "'>" +
-                            "<td>" + id + "</td>" +
+                            "<td>" + elemento_id + "</td>" +
                             "<td id='titulo" + id + "'>" + title_create + "</td>" +
                             "<td id='autor" + id + "'>" + author_create + "</td>" +
                             "<td id='contenido" + id + "'>" + content_create + "</td>" +
                             "</tr>");
-                        $("#elemento" + id + "").click(function () {
+                        $("#elemento" + elemento_id + "").click(function () {
                             var titulo = $("#titulo" + this.id + "").text();
                             var contenido = $("#contenido" + this.id + "").text();
                             var autor = $("#autor" + this.id + "").text();
                             $("#contenido").val(contenido);
                             $("#autor").val(autor);
                             $("#titulo").val(titulo);
-                            console.log($("#tablita tr").length - 1);
+                            console.log(this.id);
+                            elemento_id = this.id.substr(8);
+                            $('#boton').hide();
+                            $('#editar').show();
+                            $('#eliminar').show();
                         });
                         $('#titulo').val("");
                         $('#contenido').val("");
                         $('#autor').val("");
-                        alert("Blog creado");
+
+                        //alert("Blog creado");
                     }else {
                         alert("Error");
                     }
@@ -86,6 +96,7 @@
             });
 
             $("#eliminar").click(function () {
+                console.log(elemento_id)
                 $.post("{% url 'modificar_blog' %}", {
                     id: elemento_id
                 }, function (data) {
@@ -94,9 +105,9 @@
                     $('#contenido').val("");
                     $('#autor').val("");
                     $('#elemento' + elemento_id + '').remove();
-                    $('#boton').attr("disabled", false);
-                    $('#editar').attr("disabled", true);
-                    $('#eliminar').attr("disabled", true);
+                    $('#boton').show();
+                    $('#editar').hide();
+                    $('#eliminar').hide();
                 })
             });
             $('#editar').click(function () {
@@ -120,6 +131,9 @@
                         $('#titulo').val("");
                         $('#contenido').val("");
                         $('#autor').val("");
+                        $('#boton').show();
+                        $('#editar').hide();
+                        $('#eliminar').hide();
                         //alert("Blog creado");
                     } else {
                         alert("Error");
@@ -165,10 +179,10 @@
                             <label for="text">Autor:</label>
                             <input type="text" class="form-control" id="autor">
                         </div>
-                        <button type="submit" id="boton">Crear</button>
+                        <button class="btn btn-primary" type="submit" id="boton">Crear</button>
                     </form>
-                        <button id="editar">Editar</button>
-                        <button id="eliminar">Eliminar</button>
+                        <button class="btn btn-primary" id="editar">Editar</button>
+                        <button class="btn btn-primary" id="eliminar">Eliminar</button>
                 </div>
             </div>
         </div>

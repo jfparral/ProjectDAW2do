@@ -358,5 +358,27 @@ class reportes(APIView):
             reporte.save()
             return JsonResponse({'validacion': True}, status=200)
 
+class chart_descripcion(APIView):
+    def get(self,request):
+        descripcion=Descripcion_Venta.objects.all()
+        datos={}
+        for desc in descripcion:
+            datos[desc.id]={}
+            datos[desc.id]['id']=desc.id
+            datos[desc.id]['cantidad']=desc.cantidad
+            datos[desc.id]['libro']=desc.id_libro.get().nombre
+        return JsonResponse(datos, status=200)
+
+class chart_registro(APIView):
+    def get(self, request):
+        registro = Registro_Ventas.objects.all()
+        datos = {}
+        for desc in registro:
+            datos[desc.id]={}# += '{"id":' + str(desc.id) + ',"total":' + str(desc.total) + ',"usuario":' + desc.id_usuario.get().nombres + '},'
+            datos[desc.id]['id']=str(desc.id)
+            datos[desc.id]['total']=str(desc.total)
+            datos[desc.id]['usuario'] = str(desc.id_usuario.get().nombres)
+        return JsonResponse(datos, status=200)
+
 def chart(request):
     return render(request,'LeoBook/chart.html',{'Libros':Libro.objects.all(),'Registro':Registro_Ventas.objects.all(),'Descripcion':Descripcion_Venta.objects.all(),'Usuario':Usuario.objects.all()})

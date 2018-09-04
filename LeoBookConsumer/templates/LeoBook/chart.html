@@ -1,5 +1,6 @@
-{% extends 'LeoBook/base.html' %} {% load staticfiles %} {% load static %}
-
+{% extends 'LeoBook/baseAdministrador.html' %} {% load staticfiles %}
+{% block arriba %}
+{% endblock %}
 {% block content %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -32,12 +33,15 @@
         }
 
     </style>
+
     <div class="container">
-
-        <h2 align="center">Gráfico Radial</h2>
-
-        <div class="row">
-            <svg width="1160" height="1160"></svg>
+        <div class="col">
+            <div>
+                <h2 align="center">Gráfico Radial</h2>
+            </div>
+            <div class="row">
+                <svg width="1160" height="1160"></svg>
+            </div>
         </div>
     </div>
     <script src="https://d3js.org/d3.v4.min.js" crossorigin="anonymous"></script>
@@ -150,7 +154,7 @@
                 <tr>
                     <th scope="row">{{ d.id }}</th>
                     <td>{{ d.cantidad }}</td>
-                    <td>{{ d.id_libro }}</td>
+                    <td>{{ d.libro }}</td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -162,7 +166,6 @@
                 <th scope="col">Código</th>
                 <th scope="col">Total</th>
                 <th scope="col">Usuario</th>
-                <th scope="col">Descripción Venta</th>
             </tr>
             </thead>
             <tbody>
@@ -170,8 +173,7 @@
                 <tr>
                     <th scope="row">{{ re.id }}</th>
                     <td>{{ re.total }}</td>
-                    <td>{{ re.id_usuario }}</td>
-                    <td>{{ re.id_descripcion_venta }}</td>
+                    <td>{{ re.usuario }}</td>
                 </tr>
             {% endfor %}
             </tbody>

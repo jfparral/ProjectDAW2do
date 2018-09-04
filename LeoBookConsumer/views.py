@@ -224,11 +224,21 @@ def anothercsv(request):
 def chart(request):
     booklist = requests.get('http://127.0.0.1:8000/book/')
     books = booklist.json()
-    reglist = requests.get('http://127.0.0.1:8000/register/')
+    print(books)
+    reglist = requests.get('http://127.0.0.1:8000/chart_registro/')
     reg = reglist.json()
-    salelist = requests.get('http://127.0.0.1:8000/description_sale/')
+    lista_reg=[]
+    for r in reg:
+        lista_reg.append(reg[r])
+    print(lista_reg)
+    salelist = requests.get('http://127.0.0.1:8000/chart_descripcion/')
     sale = salelist.json()
-    return render(request, 'LeoBook/chart.html', {'Libros': books, 'Registro': reg, 'Descripcion': sale})
+    print(sale)
+    lista_sale=[]
+    for s in sale:
+        print(sale[s])
+        lista_sale.append(sale[s])
+    return render(request, 'LeoBook/chart.html', {'Libros': books, 'Registro': lista_reg, 'Descripcion': lista_sale})
 
 
 def unete(request):
@@ -367,7 +377,6 @@ def misreservas(request, user):
         reservas[reserv['id']]['image'] = book['image']
         reservas[reserv['id']]['precio'] = book['precio'] * reserv['cantidad']
         reservas[reserv['id']]['id_usuario'] = reserv['id_usuario'][0]
-
     print(reservas)
     context = {
         'nombre': request.session['user_name'],

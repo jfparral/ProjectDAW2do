@@ -34,4 +34,6 @@ urlpatterns = [
     url(r'^reportes/$',views.reportes.as_view()),
     url(r'^obtener_usuarios/$',views.obtener_usuarios.as_view()),
     url(r'^reportes_usuarios/(?P<id>[0-9]+)/$',views.reportes_usuarios.as_view()),
+    url(r'^chart_registro/$',views.chart_registro.as_view()),
+    url(r'^chart_descripcion/$',views.chart_descripcion.as_view()),
 ]
