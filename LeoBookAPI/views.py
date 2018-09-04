@@ -13,6 +13,7 @@ from .models import *
 import random as rd
 import time
 from datetime import datetime
+import json
 # Create your views here.
 def index(request):
     lib=Libro.objects.all()
@@ -69,7 +70,6 @@ class reservar_id(APIView):
         reserva = Reserva.objects.filter(id_usuario=id)
         reservas = ReservaSerializer(reserva,many=True)
         return JsonResponse(reservas.data, safe = False)
-        
 
 class user_login(APIView):
     def get(self, request):
@@ -317,7 +317,36 @@ class upd_rem_evento(APIView):
         evento.delete()
         return JsonResponse({'validacion': True}, status=200)
 
+# Reportes
+class obtener_usuarios(APIView):
+    def get(self):
+        usuarios = Usuario.objects.all()
+        serializer = UsuarioSerializer(usuarios, many=True)
+        return JsonResponse(serializer, status=200)
+
+class reportes_usuarios(APIView):
+    def get(self, request, id):
+        ventas = Registro_Ventas.objects.filter(id_usuario=id)
+        datos = "{"
+        for venta in ventas:
+            datos += "{'" + venta.id + "':" + "{" + "'usuario'" + ":" + venta.id_usuario.get().nombres + "," + \
+                     "'libro':" + venta.id_descripcion_venta.get().id_libro.get().nombre + "," + \
+                     "'cantidad':" + venta.id_descripcion_venta.get().cantidad + "," + "'total':" + venta.total + "}}"
+        datos += "}"
+        json_dat = json.loads(datos)
+        return JsonResponse(json_dat, status=200)
+
 class reportes(APIView):
+    def get(self, request):
+        ventas = Registro_Ventas.objects.all()
+        datos = "{"
+        for venta in ventas:
+            datos += "{'" + venta.id + "':" + "{" + "'usuario'" + ":" + venta.id_usuario.get().nombres + "," + \
+                     "'libro':" + venta.id_descripcion_venta.get().id_libro.get().nombre + "," + \
+                     "'cantidad':" + venta.id_descripcion_venta.get().cantidad + "," + "'total':" + venta.total + "}}"
+        datos += "}"
+        json_dat = json.loads(datos)
+        return JsonResponse(json_dat, status=200)
     def post(self, request):
         print("usuario,libro,cantidad,total")
         if (request.POST['usuario'] == "" or request.POST['cantidad'] == "" or request.POST['libro'] == "" or

@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb00173e-ef50-4802-adf4-f5a8363dc14f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DBLeoBookApi" beforeDir="false" afterPath="$PROJECT_DIR$/DBLeoBookApi" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LeoBookAPI/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/LeoBookAPI/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LeoBookAPI/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/LeoBookAPI/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LeoBookAPI/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/LeoBookAPI/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LeoBookAPI/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/LeoBookAPI/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/administradorBlog.html" beforeDir="false" afterPath="$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/administradorBlog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/baseAdministrador.html" beforeDir="false" afterPath="$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/baseAdministrador.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/crearBlog.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/eliminarBlog.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/registro.html" beforeDir="false" afterPath="$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/registro.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LeoBookConsumer/templates\LeoBook\mycsv.csv" beforeDir="false" afterPath="$PROJECT_DIR$/LeoBookConsumer/templates\LeoBook\mycsv.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LeoBookConsumer/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/LeoBookConsumer/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LeoBookConsumer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/LeoBookConsumer/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,13 +21,13 @@
           <entry key="project.closed" value="6" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.15" value="1" />
-          <entry key="project.open.time.16" value="2" />
+          <entry key="project.open.time.16" value="3" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.21" value="2" />
           <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.26" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -47,7 +35,7 @@
           <entry key="html" value="62" />
           <entry key="js" value="6" />
           <entry key="md" value="1" />
-          <entry key="py" value="88" />
+          <entry key="py" value="93" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -55,21 +43,21 @@
           <entry key="HTML" value="62" />
           <entry key="JavaScript" value="6" />
           <entry key="Markdown" value="1" />
-          <entry key="Python" value="88" />
+          <entry key="Python" value="93" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="4448" />
           <entry key="md" value="20" />
-          <entry key="py" value="3707" />
+          <entry key="py" value="4236" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="4448" />
           <entry key="Markdown" value="20" />
-          <entry key="Python" value="3707" />
+          <entry key="Python" value="4236" />
         </counts>
       </usages-collector>
     </session>
@@ -79,10 +67,9 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/LeoBookAPI/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+            <state>
+              <caret column="28" lean-forward="true" selection-start-column="28" selection-end-column="28" />
               <folding>
-                <element signature="e#0#28#0" expanded="true" />
                 <element signature="e#134#222#0" />
                 <element signature="e#255#387#0" />
                 <element signature="e#420#748#0" />
@@ -100,35 +87,80 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/registro.html">
+        <entry file="file://$PROJECT_DIR$/LeoBookAPI/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="42" column="14" lean-forward="true" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/reportesAdministrador.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="151" column="18" lean-forward="true" selection-start-line="151" selection-start-column="18" selection-end-line="151" selection-end-column="18" />
+            <state relative-caret-position="261">
+              <caret line="345" column="19" selection-start-line="345" selection-start-column="19" selection-end-line="345" selection-end-column="19" />
               <folding>
-                <element signature="n#block#0;n#!!top" />
+                <element signature="e#0#44#0" expanded="true" />
+                <element signature="e#631#1395#0" />
+                <element signature="e#1429#1605#0" />
+                <element signature="e#1641#1829#0" />
+                <element signature="e#1861#2035#0" />
+                <element signature="e#2069#2250#0" />
+                <element signature="e#2284#2479#0" />
+                <element signature="e#2521#3075#0" />
+                <element signature="e#3105#3301#0" />
+                <element signature="e#3335#3551#0" />
+                <element signature="e#3587#3784#0" />
+                <element signature="e#3827#4044#0" />
+                <element signature="e#4089#4297#0" />
+                <element signature="e#4336#4588#0" />
+                <element signature="e#4629#5090#0" />
+                <element signature="e#5122#6050#0" />
+                <element signature="e#6085#6486#0" />
+                <element signature="e#6528#6756#0" />
+                <element signature="e#6784#7261#0" />
+                <element signature="e#7295#7908#0" />
+                <element signature="e#7942#8199#0" />
+                <element signature="e#8231#8459#0" />
+                <element signature="e#8489#8700#0" />
+                <element signature="e#8733#8919#0" />
+                <element signature="e#8950#9152#0" />
+                <element signature="e#9188#9607#0" />
+                <element signature="e#9642#10263#0" />
+                <element signature="e#10297#10912#0" />
+                <element signature="e#10957#11717#0" />
+                <element signature="e#11754#12354#0" />
+                <marker date="1536019675439" expanded="true" signature="10955:14376" ph="..." />
+                <marker date="1536019675439" expanded="true" signature="10982:10987" ph="..." />
+                <marker date="1536019675439" expanded="true" signature="11170:11179" ph="..." />
+                <marker date="1536019675439" expanded="true" signature="12402:12576" ph="..." />
+                <marker date="1536019675439" expanded="true" signature="12609:13194" ph="..." />
+                <marker date="1536019675439" expanded="true" signature="13246:13786" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/LeoBookConsumer/views.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LeoBookAPI/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="579" column="70" selection-start-line="579" selection-start-column="70" selection-end-line="579" selection-end-column="70" />
+            <state relative-caret-position="496">
+              <caret line="34" column="65" lean-forward="true" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
               <folding>
-                <element signature="e#0#49#0" expanded="true" />
-                <marker date="1536007147842" expanded="true" signature="17872:17873" ph="..." />
-                <marker date="1536007147842" expanded="true" signature="20646:20651" ph="..." />
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/registro.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="351">
+              <caret line="30" column="36" lean-forward="true" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/reportesAdministrador.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="151" column="18" selection-start-line="151" selection-start-column="18" selection-end-line="151" selection-end-column="18" />
+              <folding>
+                <element signature="n#block#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -140,6 +172,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -160,7 +193,6 @@
         <option value="$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/baseUser.html" />
         <option value="$PROJECT_DIR$/LeoBookAPI/apps.py" />
         <option value="$PROJECT_DIR$/ProjectDAW2do/settings.py" />
-        <option value="$PROJECT_DIR$/LeoBookAPI/signals.py" />
         <option value="$PROJECT_DIR$/LeoBookAPI/serializers.py" />
         <option value="$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/base.html" />
         <option value="$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/loginAdministrador.html" />
@@ -174,12 +206,14 @@
         <option value="$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/eventoAdministrador.html" />
         <option value="$PROJECT_DIR$/LeoBookAPI/models.py" />
         <option value="$PROJECT_DIR$/LeoBookAPI/admin.py" />
-        <option value="$PROJECT_DIR$/LeoBookAPI/views.py" />
-        <option value="$PROJECT_DIR$/LeoBookAPI/urls.py" />
         <option value="$PROJECT_DIR$/LeoBookConsumer/urls.py" />
         <option value="$PROJECT_DIR$/LeoBookConsumer/views.py" />
         <option value="$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/reportesAdministrador.html" />
         <option value="$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/registro.html" />
+        <option value="$PROJECT_DIR$/LeoBookAPI/signals.py" />
+        <option value="$PROJECT_DIR$/LeoBookAPI/prueba.py" />
+        <option value="$PROJECT_DIR$/LeoBookAPI/views.py" />
+        <option value="$PROJECT_DIR$/LeoBookAPI/urls.py" />
       </list>
     </option>
   </component>
@@ -205,12 +239,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="ProjectDAW2do" type="b2602c69:ProjectViewProjectNode" />
               <item name="ProjectDAW2do" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ProjectDAW2do" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProjectDAW2do" type="462c0819:PsiDirectoryNode" />
+              <item name="LeoBookAPI" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ProjectDAW2do" type="b2602c69:ProjectViewProjectNode" />
@@ -234,7 +274,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -297,8 +336,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21388668" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21707901" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -337,13 +377,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/LeoBookConsumer/admin.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LeoBookAPI/signals.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="29" column="29" lean-forward="true" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/updateUser.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -508,9 +541,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -521,33 +551,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="158">
           <caret line="112" lean-forward="true" selection-start-line="112" selection-end-line="112" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LeoBookAPI/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="319" column="14" selection-start-line="319" selection-start-column="6" selection-end-line="319" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-            <element signature="e#9188#9607#0" />
-            <element signature="e#9642#10263#0" />
-            <element signature="e#10297#10912#0" />
-            <marker date="1536006664999" expanded="true" signature="10952:12975" ph="..." />
-            <marker date="1536006664999" expanded="true" signature="10979:10984" ph="..." />
-            <marker date="1536006664999" expanded="true" signature="11167:11176" ph="..." />
-            <marker date="1536006664999" expanded="true" signature="12380:12975" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LeoBookAPI/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="33" column="19" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -575,12 +578,108 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/administradorBlog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="39" lean-forward="true" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+          <folding>
+            <element signature="e#433#2274#0#HTML" />
+            <element signature="e#2436#4500#0#HTML" />
+            <element signature="e#4549#5150#0#HTML" />
+            <element signature="e#5196#6473#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LeoBookAPI/signals.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/registro.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="30" column="36" lean-forward="true" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LeoBookConsumer/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="579" column="70" selection-start-line="579" selection-start-column="70" selection-end-line="579" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+            <marker date="1536007147842" expanded="true" signature="17872:17873" ph="..." />
+            <marker date="1536007147842" expanded="true" signature="20646:20651" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LeoBookAPI/prueba.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LeoBookAPI/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="34" column="65" lean-forward="true" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LeoBookAPI/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="345" column="19" selection-start-line="345" selection-start-column="19" selection-end-line="345" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+            <element signature="e#631#1395#0" />
+            <element signature="e#1429#1605#0" />
+            <element signature="e#1641#1829#0" />
+            <element signature="e#1861#2035#0" />
+            <element signature="e#2069#2250#0" />
+            <element signature="e#2284#2479#0" />
+            <element signature="e#2521#3075#0" />
+            <element signature="e#3105#3301#0" />
+            <element signature="e#3335#3551#0" />
+            <element signature="e#3587#3784#0" />
+            <element signature="e#3827#4044#0" />
+            <element signature="e#4089#4297#0" />
+            <element signature="e#4336#4588#0" />
+            <element signature="e#4629#5090#0" />
+            <element signature="e#5122#6050#0" />
+            <element signature="e#6085#6486#0" />
+            <element signature="e#6528#6756#0" />
+            <element signature="e#6784#7261#0" />
+            <element signature="e#7295#7908#0" />
+            <element signature="e#7942#8199#0" />
+            <element signature="e#8231#8459#0" />
+            <element signature="e#8489#8700#0" />
+            <element signature="e#8733#8919#0" />
+            <element signature="e#8950#9152#0" />
+            <element signature="e#9188#9607#0" />
+            <element signature="e#9642#10263#0" />
+            <element signature="e#10297#10912#0" />
+            <element signature="e#10957#11717#0" />
+            <element signature="e#11754#12354#0" />
+            <marker date="1536019675439" expanded="true" signature="10955:14376" ph="..." />
+            <marker date="1536019675439" expanded="true" signature="10982:10987" ph="..." />
+            <marker date="1536019675439" expanded="true" signature="11170:11179" ph="..." />
+            <marker date="1536019675439" expanded="true" signature="12402:12576" ph="..." />
+            <marker date="1536019675439" expanded="true" signature="12609:13194" ph="..." />
+            <marker date="1536019675439" expanded="true" signature="13246:13786" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/LeoBookAPI/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+        <state>
+          <caret column="28" lean-forward="true" selection-start-column="28" selection-end-column="28" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
             <element signature="e#134#222#0" />
             <element signature="e#255#387#0" />
             <element signature="e#420#748#0" />
@@ -596,44 +695,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/registro.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="42" column="14" lean-forward="true" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/reportesAdministrador.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="151" column="18" lean-forward="true" selection-start-line="151" selection-start-column="18" selection-end-line="151" selection-end-column="18" />
+        <state relative-caret-position="36">
+          <caret line="151" column="18" selection-start-line="151" selection-start-column="18" selection-end-line="151" selection-end-column="18" />
           <folding>
             <element signature="n#block#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LeoBookConsumer/templates/LeoBook/administradorBlog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="39" lean-forward="true" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
-          <folding>
-            <element signature="e#433#2274#0#HTML" />
-            <element signature="e#2436#4500#0#HTML" />
-            <element signature="e#4549#5150#0#HTML" />
-            <element signature="e#5196#6473#0#HTML" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LeoBookConsumer/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="579" column="70" selection-start-line="579" selection-start-column="70" selection-end-line="579" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-            <marker date="1536007147842" expanded="true" signature="17872:17873" ph="..." />
-            <marker date="1536007147842" expanded="true" signature="20646:20651" ph="..." />
           </folding>
         </state>
       </provider>

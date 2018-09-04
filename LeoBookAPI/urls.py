@@ -32,4 +32,6 @@ urlpatterns = [
     url(r'^manage_events/$',views.manage_events.as_view()),
     url(r'^upd_rem_evento/(?P<even>[0-9]+)/$',views.upd_rem_evento.as_view()),
     url(r'^reportes/$',views.reportes.as_view()),
+    url(r'^obtener_usuarios/$',views.obtener_usuarios.as_view()),
+    url(r'^reportes_usuarios/(?P<id>[0-9]+)/$',views.reportes_usuarios.as_view()),
 ]
