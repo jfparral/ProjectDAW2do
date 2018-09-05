@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'LeoBookAPI',
     'LeoBookConsumer',
     'rest_framework',
+    'proofdjo',
 ]
 
 MIDDLEWARE = [
