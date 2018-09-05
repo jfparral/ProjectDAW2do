@@ -98,7 +98,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME' : 'defaultLeoBook',
-        'HOST': 'localhost'
+        'HOST': 'localhost',
+        'ENFORCE_SCHEMA' : False
     },
     'DBLeoBookApi': {
         'ENGINE': 'django.db.backends.sqlite3',

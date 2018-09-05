@@ -41,19 +41,6 @@ class Reserva(models.Model):
     def __str__(self):
         return str(self.id_libro.get().nombre)
 
-class Descripcion_Venta(djono_models.Model):
-    cantidad=djono_models.IntegerField()
-    libro=djono_models.CharField(max_length=50)
-    def __str__(self):
-        return str(self.cantidad)
-
-class Registro_Ventas(djono_models.Model):
-    total=djono_models.FloatField()
-    usuario=djono_models.CharField(max_length = 100)
-    cantidad=djono_models.IntegerField()
-    libro=djono_models.CharField(max_length=50)
-    def __str__(self):
-        return str(self.total)
 
 class Contenido_Blog(models.Model):
     titulo = models.CharField(max_length=250, blank=True, null=True)
@@ -83,6 +70,20 @@ class Administrador(models.Model):
     def __str__(self):
         return self.usuario
 
+class Descripcion_Venta(djono_models.Model):
+    cantidad=djono_models.IntegerField()
+    libro=djono_models.CharField(max_length=50,blank=True,null=False)
+    def __str__(self):
+        return str(self.cantidad)
+
+class Registro_Ventas(djono_models.Model):
+    total=djono_models.FloatField()
+    usuario=djono_models.CharField(max_length = 100)
+    cantidad=djono_models.IntegerField()
+    libro=djono_models.CharField(max_length=50)
+    def __str__(self):
+        return str(self.total)
+    
 class Reportes(djono_models.Model):
     usuario=djono_models.CharField(max_length = 100)
     libro=djono_models.CharField(max_length=50)
